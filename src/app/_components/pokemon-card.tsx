@@ -1,12 +1,11 @@
 import React from "react";
 import type { PokemonCard } from "@/types/pokemon";
 
-const PokemonCard: React.FC<PokemonCard> = ({ name, url}) => {
-    // Fetch all pokemons
-    
+const PokemonCard: React.FC<PokemonCard> = ({ name, url }) => {
     return (
         <div className="text-white">
-            {name}, {url}
+            <h2>{name}</h2>
+            <p>{url}</p>
         </div>
     );
 }

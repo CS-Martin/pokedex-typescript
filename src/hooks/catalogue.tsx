@@ -14,14 +14,14 @@ export const useDisplayPokemons = (limit: number) => {
                     throw new Error("Failed to fetch pokemons");
                 }
 
-                setPokemons(storedPokemons);
+                setPokemons(storedPokemons.slice(0, limit));
             } catch (error) {
                 throw new Error('An error occurred while fetching pokemons');
             }
         }
 
         fetchData();
-    }, [])
+    }, [limit])
 
     return pokemons || [];
 }
