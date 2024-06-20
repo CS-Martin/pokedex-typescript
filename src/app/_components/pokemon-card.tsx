@@ -1,11 +1,7 @@
 import React from "react";
-import { Pokemon } from '../../services/pokeapi';
+import type { PokemonCard } from "@/types/pokemon";
 
-type PokemonCardProps = {
-    name: string,
-    url: string
-}
-const PokemonCard: React.FC<PokemonCardProps> = ({ name, url}) => {
+const PokemonCard: React.FC<PokemonCard> = ({ name, url}) => {
     // Fetch all pokemons
     
     return (

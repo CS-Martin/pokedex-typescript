@@ -1,5 +1,5 @@
-import { fetchAllPokemons, Pokemon } from "@/services/pokeapi"
-import { resolve } from "path";
+import { fetchAllPokemons } from "@/services/pokeapi"
+import { Pokemon } from "@/types/pokemon";
 import { useEffect, useState } from "react";
 
 export const useDisplayPokemons = (limit: number) => {

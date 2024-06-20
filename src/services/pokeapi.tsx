@@ -1,7 +1,4 @@
-export type Pokemon = {
-    name: string,
-    url: string
-}
+import { Pokemon } from "@/types/pokemon";
 
 export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
     try {
