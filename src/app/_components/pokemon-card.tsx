@@ -4,7 +4,7 @@ import type { PokemonCard } from "@/types/pokemon";
 const PokemonCard: React.FC<PokemonCard> = ({ name, url }) => {
     return (
         <div className="text-white">
-            <h2>{name}</h2>
+            <p>{name}</p>
             <p>{url}</p>
         </div>
     );
