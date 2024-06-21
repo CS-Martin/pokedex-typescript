@@ -20,8 +20,8 @@ const CatalogueContainer: React.FC = () => {
     }
 
     return (
-        <div>
-            <div className='grid grid-cols-4 gap-5'>
+        <div className=''>
+            <div className='grid grid-cols-5 gap-5 mt-36'>
                 {pokemons.map((pokemon) => (
                     <PokemonCard
                         key={pokemon.name}
@@ -32,7 +32,7 @@ const CatalogueContainer: React.FC = () => {
                     />
                 ))}
             </div>
-            <div>
+            <div className='flex justify-center py-8'>
                 <LoadMorePokemonButton onClick={handleLoadMore} />
             </div>
         </div>

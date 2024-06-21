@@ -15,12 +15,13 @@ import DisplayPokemonImage from "@/components/custom-components/pokemon-image";
 const PokemonCard: React.FC<PokemonCardProps> = ({
     id,
     name,
-    url,
     image
 }: PokemonCardProps): JSX.Element => {
     return (
-        <div className="border rounded-lg">
-            <DisplayPokemonImage image={image} name={name} size={200} />
+        <div className="border rounded-lg max-w-[250px] py-5 px-3 relative">
+            <div className="flex justify-center">
+                <DisplayPokemonImage image={image} name={name} size={200} />
+            </div>
             <p>{id}</p>
             <p>{name}</p>
         </div>
