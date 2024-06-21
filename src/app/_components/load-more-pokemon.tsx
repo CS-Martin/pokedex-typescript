@@ -1,7 +1,15 @@
-const LoadMorePokemonButton: React.FC = () => {
+import { Button } from "@/components/ui/button";
+
+type LoadMorePokemonButtonProps = {
+    onClick: () => void;
+}
+
+const LoadMorePokemonButton: React.FC<LoadMorePokemonButtonProps> = ({ onClick }) => {
     return (
         <div>
-            <Button></Button>
+            <Button onClick={onClick}>
+                Load More Pokemon
+            </Button>
         </div>
     );
 }
