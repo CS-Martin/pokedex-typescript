@@ -9,7 +9,7 @@ export const useDisplayPokemons = (limit: number) => {
         const fetchData = async () => {
             try {
                 const storedPokemons = await getPokemonsFromLocalStorage();
-
+                
                 if (!storedPokemons) {
                     throw new Error("Failed to fetch pokemons");
                 }

@@ -23,11 +23,13 @@ const CatalogueContainer: React.FC = () => {
         <div>
             <div className='grid grid-cols-4 gap-5'>
                 {pokemons.map((pokemon) => (
-                    <PokemonCard 
-                        key={pokemon.name} 
+                    <PokemonCard
+                        key={pokemon.name}
                         id={pokemon.id}
-                        name={pokemon.name} 
-                        url={pokemon.url} />
+                        name={pokemon.name}
+                        url={pokemon.url}
+                        image={pokemon.image}
+                    />
                 ))}
             </div>
             <div>

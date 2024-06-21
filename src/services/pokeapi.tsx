@@ -7,7 +7,6 @@ import { Pokemon } from "@/types/pokemon";
  * @throws {Error} If fetching the Pokemon or parsing the JSON fails.
  */
 export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
-    localStorage.clear();
     try {
         const storedPokemons: string | null = localStorage.getItem('pokemons');
 
@@ -23,8 +22,9 @@ export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
             const data: { results: Pokemon[] } = await response.json();
 
             const pokemons: Pokemon[] = data.results.map((pokemon) => {
-                const id: number = parseInt(pokemon.url.split('/').filter(Boolean).pop() || "0", 10);
-                return { ...pokemon, id};
+                const id: string = String(pokemon.url.split('/').filter(Boolean).pop() || "0").padStart(3, '0');
+                const image: string = fetchPokemonImage(id);
+                return { ...pokemon, id, image};
             });
 
             localStorage.setItem('pokemons', JSON.stringify(pokemons));
@@ -39,3 +39,21 @@ export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
         throw new Error('An error occurred while fetching pokemons');
     }
 }
+
+const fetchPokemonImage = (id: string): string => {
+    try {
+        let pokemonImage = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png`;
+
+        if (!pokemonImage) {
+            throw new Error(`An error occured while fetching pokemon ID:${id} image.`)
+        }
+
+        return pokemonImage;
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        }
+
+        throw new Error("An error occured while fetching pokemon image")
+    }
+}; 

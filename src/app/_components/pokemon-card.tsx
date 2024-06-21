@@ -1,5 +1,7 @@
 import React from "react";
-import type { PokemonCard as PokemonCardProps } from "@/types/pokemon";
+import type { Pokemon as PokemonCardProps } from "@/types/pokemon";
+import Image from 'next/image';
+import DisplayPokemonImage from "@/components/custom-components/pokemon-image";
 
 /**
  * Renders a PokemonCard component with the given properties.
@@ -14,12 +16,13 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
     id,
     name,
     url,
+    image
 }: PokemonCardProps): JSX.Element => {
     return (
         <div className="border rounded-lg">
+            <DisplayPokemonImage image={image} name={name} size={200} />
             <p>{id}</p>
             <p>{name}</p>
-            <p>{url}</p>
         </div>
     );
 }
