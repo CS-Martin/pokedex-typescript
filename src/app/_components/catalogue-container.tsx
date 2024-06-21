@@ -21,12 +21,14 @@ const CatalogueContainer: React.FC = () => {
 
     return (
         <div>
-            <div>
-                <p>
-                    {pokemons.map((pokemon) => (
-                        <PokemonCard key={pokemon.name} name={pokemon.name} url={pokemon.url} />
-                    ))}
-                </p>
+            <div className='grid grid-cols-4 gap-5'>
+                {pokemons.map((pokemon) => (
+                    <PokemonCard 
+                        key={pokemon.name} 
+                        id={pokemon.id}
+                        name={pokemon.name} 
+                        url={pokemon.url} />
+                ))}
             </div>
             <div>
                 <LoadMorePokemonButton onClick={handleLoadMore} />
