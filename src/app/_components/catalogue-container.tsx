@@ -7,8 +7,8 @@ import PokemonCard from './pokemon-card';
 import LoadMorePokemonButton from './load-more-pokemon';
 import SearchPokemon from '@/components/custom-components/search';
 import { Separator } from '@/components/ui/separator';
-import Search from '@/components/custom-components/search';
 import { Button } from '@/components/ui/button';
+import { useSearchParams } from 'next/navigation';
 
 /**
  * Renders the CatalogueContainer component with a list of pokemons fetched based on the limit.
@@ -16,8 +16,11 @@ import { Button } from '@/components/ui/button';
  * @return {JSX.Element} The rendered CatalogueContainer component
  */
 const CatalogueContainer: React.FC = () => {
+    const searchParams = useSearchParams();
+    const search: string = searchParams?.get('search') || '';
+
     const [limit, setLimit] = useState(10);
-    const pokemons = useDisplayPokemons(limit);
+    const pokemons = useDisplayPokemons(limit, search);
 
     /**
      * Increases the limit by 10 and updates the state

@@ -1,45 +1,58 @@
 import { fetchAllPokemons } from "@/services/pokeapi"
 import { Pokemon } from "@/types/pokemon";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
-export const useDisplayPokemons = (limit: number) => {
-    const [pokemons, setPokemons] = useState<Pokemon[] | null>(null)
+export const useDisplayPokemons = (limit: number, searchParams: string): Pokemon[] => {
+    const [pokemons, setPokemons] = useState<Pokemon[] | null>(null);
+
+    const fetchPokemons = useCallback(async () => {
+        try {
+            const storedPokemons = await getPokemonsFromLocalStorage();
+            if (!storedPokemons) {
+                throw new Error("Failed to fetch pokemons");
+            }
+            setPokemons(storedPokemons);
+        } catch (error) {
+            console.error('An error occurred while fetching pokemons', error);
+        }
+    }, []);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const storedPokemons = await getPokemonsFromLocalStorage();
-                
-                if (!storedPokemons) {
-                    throw new Error("Failed to fetch pokemons");
-                }
+        fetchPokemons();
+    }, [fetchPokemons]);
 
-                setPokemons(storedPokemons.slice(0, limit));
-            } catch (error) {
-                throw new Error('An error occurred while fetching pokemons');
-            }
-        }
+    const filteredPokemons = useMemo(() => {
+        if (!pokemons) return [];
+        if (!searchParams) return pokemons.slice(0, limit);
 
-        fetchData();
-    }, [limit])
+        const lowerCaseSearch = searchParams.toLowerCase();
+        return pokemons.filter(pokemon =>
+            pokemon.name.toLowerCase().includes(lowerCaseSearch) ||
+            pokemon.id.toString().includes(searchParams)
+        ).slice(0, limit);
+    }, [pokemons, limit, searchParams]);
 
-    return pokemons || [];
+    return filteredPokemons;
 }
 
-const getPokemonsFromLocalStorage = (): Promise<Pokemon[] | null> => {
-    return new Promise((resolve, reject) => {
+
+// const useFetchSearchedPokemons = (searchParams: string, pokemons: Pokemon[]) => {
+//     const searchedPokemons = pokemons.filter((pokemon) =>
+//         pokemon.name.toLowerCase().includes(searchParams.toLowerCase()) ||
+//         pokemon.id.toString().includes(searchParams)
+//     );
+
+//     return searchedPokemons as Pokemon[];
+// }
+
+const getPokemonsFromLocalStorage = async (): Promise<Pokemon[]> => {
+    const storedPokemons = localStorage.getItem('pokemons');
+    if (storedPokemons) {
         try {
-            const storedPokemons = localStorage.getItem('pokemons');
-
-            if (storedPokemons) {
-                resolve(JSON.parse(storedPokemons) as Pokemon[]);
-            } else {
-                const pokemons = fetchAllPokemons();
-
-                resolve(pokemons);
-            }
+            return JSON.parse(storedPokemons) as Pokemon[];
         } catch (error) {
-            reject(new Error('Failed to get pokemons from local storage'));
+            console.error('Failed to parse stored pokemons', error);
         }
-    });
+    }
+    return fetchAllPokemons();
 }
