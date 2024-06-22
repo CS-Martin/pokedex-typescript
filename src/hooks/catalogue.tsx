@@ -1,6 +1,6 @@
 import { fetchAllPokemons } from "@/services/pokeapi"
 import { Pokemon } from "@/types/pokemon";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useDisplayPokemons = (limit: number, searchParams: string) => {
     const [pokemons, setPokemons] = useState<Pokemon[] | null>(null)
