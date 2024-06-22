@@ -1,7 +1,11 @@
 import Image from "next/image";
 import { ModeToggle } from "./theme-toggler";
-import { Search } from 'lucide-react';
 
+/**
+ * Renders the header component.
+ *
+ * @return {JSX.Element} The header component.
+ */
 const Header = () => {
     return (
         <nav className="absolute container w-full h-[100px] flex items-center justify-between">
