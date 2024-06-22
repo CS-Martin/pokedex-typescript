@@ -23,7 +23,7 @@ const SearchPokemon = () => {
         }
         
         replace(`${pathname}?${params.toString()}`);
-    }, 300);
+    }, 500);
 
     return (
         <div className='flex items-center w-full'>
