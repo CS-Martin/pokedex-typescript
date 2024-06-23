@@ -25,10 +25,9 @@ export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
             const pokemonsPromises: Promise<Pokemon>[] = data.results.map(async (pokemon) => {
                 const urlID: string = String(pokemon.url.split('/').filter(Boolean).pop() || "0");
 
-                const types: string[] = await fetchPokemonTypes(urlID);
                 const id: string = String(urlID.padStart(3, '0'));
-                const image: string = fetchPokemonImage(id);
-                return { ...pokemon, id, image, types };
+                const image: string = `${POKEAPI_POKEMONS_IMAGE_URL}${id}.png`;
+                return { ...pokemon, id, image };
             });
 
             const pokemons: Pokemon[] = await Promise.all(pokemonsPromises);
@@ -45,7 +44,7 @@ export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
     }
 }
 
-const fetchPokemonTypes = async (id: string) => {
+export const fetchPokemonTypes = async (id: string) => {
     try {
         const response: Response = await fetch(`${POKEAPI_POKEMONS_URL}${id}`);
 
@@ -66,23 +65,5 @@ const fetchPokemonTypes = async (id: string) => {
         }
 
         throw new Error("An error occured while fetching pokemon details")
-    }
-};
-
-const fetchPokemonImage = (id: string): string => {
-    try {
-        let pokemonImage = `${POKEAPI_POKEMONS_IMAGE_URL}${id}.png`;
-
-        if (!pokemonImage) {
-            throw new Error(`An error occured while fetching pokemon ID:${id} image.`)
-        }
-
-        return pokemonImage;
-    } catch (error) {
-        if (error instanceof Error) {
-            throw new Error(error.message);
-        }
-
-        throw new Error("An error occured while fetching pokemon image")
     }
 };

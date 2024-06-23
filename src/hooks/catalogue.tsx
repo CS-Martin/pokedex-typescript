@@ -1,39 +1,61 @@
-import { fetchAllPokemons } from "@/services/pokeapi"
+import { fetchAllPokemons, fetchPokemonTypes } from "@/services/pokeapi"
 import { Pokemon } from "@/types/pokemon";
 import { useCallback, useEffect, useState } from "react";
 
-export const useDisplayPokemons = (limit: number, searchParams: string) => {
-    const [pokemons, setPokemons] = useState<Pokemon[] | null>(null)
+/**
+ * Fetches and displays a limited number of pokemons based on the search parameter.
+ *
+ * @param {number} limit - The maximum number of pokemons to display.
+ * @param {string} searchParam - The search parameter to filter the pokemons.
+ * @return {Pokemon[] | null} An array of pokemons or null if an error occurred.
+ */
+export const useDisplayPokemons = (limit: number, searchParam: string) => {
+    const [pokemons, setPokemons] = useState<Pokemon[] | null>(null);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchPokemons = async () => {
             try {
-                const storedPokemons = await getPokemonsFromLocalStorage();
-                
-                if (!storedPokemons) {
+                const pokemonList = await getPokemonsFromLocalStorage();
+
+                if (!pokemonList) {
                     throw new Error("Failed to fetch pokemons");
                 }
 
-                if (searchParams) {
-                    const searchedPokemons = useFetchSearchedPokemons(searchParams, storedPokemons); 
-                    setPokemons(searchedPokemons.slice(0, limit));
-                } else {
-                    setPokemons(storedPokemons.slice(0, limit));
-                }
+                const filteredPokemons = searchParam
+                    ? useFetchSearchedPokemons(searchParam, pokemonList)
+                    : pokemonList.slice(0, limit);
 
+                const pokemonWithTypes = await Promise.all(
+                    filteredPokemons.map(async (pokemon) => ({
+                        ...pokemon,
+                        types: await useFetchPokemonTypesById(String(parseInt(pokemon.id, 10))),
+                    }))
+                );
+
+                console.log(pokemonWithTypes);
+                setPokemons(pokemonWithTypes);
             } catch (error) {
-                throw new Error('An error occurred while fetching pokemons');
+                throw new Error("An error occurred while fetching pokemons");
             }
-        }
+        };
 
-        fetchData();
-    }, [limit, searchParams])
+        fetchPokemons();
+    }, [limit, searchParam]);
 
     return pokemons || [];
-}
+};
+
+const useFetchPokemonTypesById = async (pokemonId: string): Promise<string[]> => {
+    try {
+        const pokemonTypes = await fetchPokemonTypes(pokemonId);
+        return pokemonTypes;
+    } catch {
+        throw new Error('Failed to fetch pokemon types');
+    }
+};
 
 const useFetchSearchedPokemons = (searchParams: string, pokemons: Pokemon[]) => {
-    const searchedPokemons = pokemons.filter((pokemon) => 
+    const searchedPokemons = pokemons.filter((pokemon) =>
         pokemon.name.toLowerCase().includes(searchParams.toLowerCase()) ||
         pokemon.id.toString().includes(searchParams)
     );

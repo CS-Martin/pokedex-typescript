@@ -1,7 +1,6 @@
 import "./type-icons.css";
 
 export const PokemonTypeBadge = (type: { type: string }) => {
-    console.log(type)
     switch (type.type) {
         case "ice":
             return <Ice />;

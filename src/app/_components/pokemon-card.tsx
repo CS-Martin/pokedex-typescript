@@ -19,12 +19,11 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
     image,
     types
 }: PokemonCardProps): JSX.Element => {
-
     return (
         <div className="border rounded-lg max-w-[250px] py-5 px-3 relative">
             <div className="absolute">
-                {types?.map((type: string) => {
-                    return <PokemonTypeBadge type={type} />;
+                {types?.map((type: string, index: number) => {
+                    return <PokemonTypeBadge key={index} type={type} />;
                 })}
             </div>
             <div className="flex justify-center">
