@@ -1,4 +1,5 @@
 import { Pokemon } from "@/types/pokemon";
+import { POKEAPI_POKEMONS_IMAGE_URL, POKEAPI_POKEMONS_URL } from "@/utils/constants";
 
 /**
  * Fetches all Pokemon from the PokeAPI and stores them in local storage.
@@ -13,7 +14,7 @@ export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
         if (storedPokemons) {
             return JSON.parse(storedPokemons) as Pokemon[];
         } else {
-            const response: Response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0');
+            const response: Response = await fetch(`${POKEAPI_POKEMONS_URL}?limit=1000&offset=0`);
 
             if (!response.ok) {
                 throw new Error("Failed to fetch pokemons");
@@ -21,14 +22,18 @@ export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
 
             const data: { results: Pokemon[] } = await response.json();
 
-            const pokemons: Pokemon[] = data.results.map((pokemon) => {
-                const id: string = String(pokemon.url.split('/').filter(Boolean).pop() || "0").padStart(3, '0');
+            const pokemonsPromises: Promise<Pokemon>[] = data.results.map(async (pokemon) => {
+                const urlID: string = String(pokemon.url.split('/').filter(Boolean).pop() || "0");
+
+                const types: string[] = await fetchPokemonTypes(urlID);
+                const id: string = String(urlID.padStart(3, '0'));
                 const image: string = fetchPokemonImage(id);
-                return { ...pokemon, id, image};
+                return { ...pokemon, id, image, types };
             });
 
-            localStorage.setItem('pokemons', JSON.stringify(pokemons));
+            const pokemons: Pokemon[] = await Promise.all(pokemonsPromises);
 
+            localStorage.setItem('pokemons', JSON.stringify(pokemons));
             return pokemons;
         }
     } catch (error: unknown) {
@@ -40,9 +45,33 @@ export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
     }
 }
 
+const fetchPokemonTypes = async (id: string) => {
+    try {
+        const response: Response = await fetch(`${POKEAPI_POKEMONS_URL}${id}`);
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch pokemon details");
+        }
+
+        const data: any = await response.json();
+
+        const pokemonTypes: string[] = data.types.map((typeInfo: any) => {
+            return typeInfo.type.name;
+        })
+
+        return pokemonTypes;
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        }
+
+        throw new Error("An error occured while fetching pokemon details")
+    }
+};
+
 const fetchPokemonImage = (id: string): string => {
     try {
-        let pokemonImage = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png`;
+        let pokemonImage = `${POKEAPI_POKEMONS_IMAGE_URL}${id}.png`;
 
         if (!pokemonImage) {
             throw new Error(`An error occured while fetching pokemon ID:${id} image.`)
@@ -56,4 +85,4 @@ const fetchPokemonImage = (id: string): string => {
 
         throw new Error("An error occured while fetching pokemon image")
     }
-}; 
+};
