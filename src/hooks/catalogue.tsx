@@ -1,6 +1,6 @@
 import { fetchAllPokemons, fetchPokemonTypes } from "@/services/pokeapi"
 import { Pokemon } from "@/types/pokemon";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Fetches and displays a limited number of pokemons based on the search parameter.
@@ -45,8 +45,16 @@ export const useDisplayPokemons = (limit: number, searchParam: string) => {
     return pokemons || [];
 };
 
+/**
+ * Fetches the types of a specific Pokemon by its ID.
+ *
+ * @param {string} pokemonId - The ID of the Pokemon to fetch types for (Ex. '1' not '001').
+ * @return {Promise<string[]>} An array of strings representing the types of the Pokemon.
+ */
 const useFetchPokemonTypesById = async (pokemonId: string): Promise<string[]> => {
     try {
+        // Check if local storage contains the pokemon types
+
         const pokemonTypes = await fetchPokemonTypes(pokemonId);
         return pokemonTypes;
     } catch {
@@ -54,6 +62,13 @@ const useFetchPokemonTypesById = async (pokemonId: string): Promise<string[]> =>
     }
 };
 
+/**
+ * Filters the given array of Pokemon based on the search parameters.
+ *
+ * @param {string} searchParams - The search parameters to filter the Pokemon by.
+ * @param {Pokemon[]} pokemons - The array of Pokemon to filter.
+ * @return {Pokemon[]} The filtered array of Pokemon.
+ */
 const useFetchSearchedPokemons = (searchParams: string, pokemons: Pokemon[]) => {
     const searchedPokemons = pokemons.filter((pokemon) =>
         pokemon.name.toLowerCase().includes(searchParams.toLowerCase()) ||
@@ -63,6 +78,11 @@ const useFetchSearchedPokemons = (searchParams: string, pokemons: Pokemon[]) => 
     return searchedPokemons as Pokemon[];
 }
 
+/**
+ * Retrieves an array of Pokemon from local storage, or fetches them from the PokeAPI if not found.
+ *
+ * @return {Promise<Pokemon[] | null>} A promise that resolves to an array of Pokemon objects, or null if an error occurred.
+ */
 const getPokemonsFromLocalStorage = (): Promise<Pokemon[] | null> => {
     return new Promise((resolve, reject) => {
         try {

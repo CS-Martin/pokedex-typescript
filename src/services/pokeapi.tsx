@@ -22,6 +22,7 @@ export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
 
             const data: { results: Pokemon[] } = await response.json();
 
+            // Basic details of the pokemons (id, name, url, image)
             const pokemonsPromises: Promise<Pokemon>[] = data.results.map(async (pokemon) => {
                 const urlID: string = String(pokemon.url.split('/').filter(Boolean).pop() || "0");
 
@@ -44,7 +45,13 @@ export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
     }
 }
 
-export const fetchPokemonTypes = async (id: string) => {
+/**
+ * Fetches types of a pokemon based on its ID.
+ *
+ * @param {string} id - The ID of the Pokemon to fetch types for.
+ * @return {Promise<string[]>} An array of strings representing the types of the Pokemon.
+ */
+export const fetchPokemonTypes = async (id: string): Promise<string[]> => {
     try {
         const response: Response = await fetch(`${POKEAPI_POKEMONS_URL}${id}`);
 

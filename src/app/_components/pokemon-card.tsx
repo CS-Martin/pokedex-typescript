@@ -20,17 +20,19 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
     types
 }: PokemonCardProps): JSX.Element => {
     return (
-        <div className="border rounded-lg max-w-[250px] py-5 px-3 relative">
-            <div className="absolute">
+        <div className="border rounded-lg w-full py-5 px-3 relative">
+            <div className="absolute flex gap-2 flex-wrap">
                 {types?.map((type: string, index: number) => {
                     return <PokemonTypeBadge key={index} type={type} />;
                 })}
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-5">
                 <DisplayPokemonImage image={image} name={name} size={200} />
             </div>
-            <p>{id}</p>
-            <p>{name}</p>
+            <div className="px-1">
+                <p>{id}</p>
+                <p>{name}</p>
+            </div>
         </div>
     );
 }

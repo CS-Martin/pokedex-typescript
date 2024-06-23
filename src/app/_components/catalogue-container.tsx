@@ -37,7 +37,7 @@ const CatalogueContainer: React.FC = () => {
                 <Button variant='outline'>Sort</Button>
             </div>
             <Separator className='my-3' />
-            <div className='grid grid-cols-5 gap-5'>
+            <div className='grid grid-cols-2 gap-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2'>
                 {pokemons.map((pokemon) => (
                     <PokemonCard
                         key={pokemon.name}

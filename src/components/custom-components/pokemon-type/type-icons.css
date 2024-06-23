@@ -1,5 +1,5 @@
 .icon-container {
-    @apply flex items-center justify-center rounded-md shadow-lg px-[6px] w-fit;
+    @apply flex items-center justify-center rounded-full sm:rounded-md shadow-lg px-[6px] w-fit;
 }
 
 .bug {
