@@ -1,13 +1,15 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import localFont from "next/font/local"
 
 const inter = Inter({ subsets: ["latin"] });
+const MinecraftFont = localFont({ src: '/minecraft.ttf' })
 
 export const metadata: Metadata = {
   title: "Pokedex",
-  description: "",
+  description: "A recoded version of my pokedexjs to typescript",
 };
 
 export default function RootLayout({
@@ -17,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={MinecraftFont.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
