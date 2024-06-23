@@ -45,6 +45,7 @@ const CatalogueContainer: React.FC = () => {
                         name={pokemon.name}
                         url={pokemon.url}
                         image={pokemon.image}
+                        types={pokemon.types}
                     />
                 ))}
             </div>
