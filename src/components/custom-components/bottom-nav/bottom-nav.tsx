@@ -18,7 +18,7 @@ type BottomNavigationProps = {
 const BottomNavigation: React.FC<BottomNavigationProps> = ({ onClick }): JSX.Element => {
 
     return (
-        <div className='fixed bottom-5 w-full sm:w-[370px] bg-transparent max-h-[65px] h-fit bottom-nav-container'>
+        <div className='fixed bottom-5 w-full sm:w-[385px] bg-transparent max-h-[65px] h-fit bottom-nav-container'>
             <div className='flex items-center gap-x-3 w-full'>
                 <LoadMorePokemonButton onClick={onClick} />
                 <NavigationMenu orientation="vertical" className="absolute right-2 ">

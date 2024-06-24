@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ArrowDownAZ, Moon, Sun, SunMoon } from "lucide-react"
+import { ArrowDown01, ArrowDownAZ, ArrowDownZA, ArrowUp10, ArrowUpZA, Moon, Sun, SunMoon } from "lucide-react"
 import { useTheme } from "next-themes"
 import {
     NavigationMenuContent,
@@ -18,29 +18,29 @@ export function Test() {
                 <ArrowDownAZ size={18} /> <span className="ms-1">Sort</span>
             </NavigationMenuTrigger>
             <NavigationMenuContent className="">
-                <ul className="p-6 w-[200px] lg:w-[300px]">
+                <ul className="p-6 w-[330px] lg:w-[360px]">
                     <ListItem>
                         <span className="flex justify-between items-center">
                             Sort by Name (A - Z)
-                            <Sun size={20} />
+                            <ArrowDownAZ size={20} />
                         </span>
                     </ListItem>
                     <ListItem>
                         <span className="flex justify-between items-center">
                             Sort by Name (Z - A)
-                            <Moon size={20} />
+                            <ArrowUpZA size={20} />
                         </span>
                     </ListItem>
                     <ListItem>
                         <span className="flex justify-between items-center">
                             Sort by ID (Increasing)
-                            <SunMoon size={20} />
+                            <ArrowDown01 size={20} />
                         </span>
                     </ListItem>
                     <ListItem>
                         <span className="flex justify-between items-center">
                             Sort by ID (Decreasing)
-                            <SunMoon size={20} />
+                            <ArrowUp10 size={20} />
                         </span>
                     </ListItem>
                 </ul>
