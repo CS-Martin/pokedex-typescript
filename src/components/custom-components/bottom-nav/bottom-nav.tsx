@@ -1,5 +1,4 @@
 import React from 'react';
-import './bottom-nav.css';
 import LoadMorePokemonButton from '@/app/_components/load-more-pokemon';
 import {
     NavigationMenu,
@@ -18,7 +17,7 @@ type BottomNavigationProps = {
 
 const BottomNavigation: React.FC<BottomNavigationProps> = ({ loadMorePokemons, sortPokemons }): JSX.Element => {
     return (
-        <div className='fixed bottom-5 animate-fade w-full sm:w-[385px] bg-transparent max-h-[65px] h-fit bottom-nav-container'>
+        <div className='fixed bottom-5 animate-fade w-full sm:w-[385px] bg-transparent shadow-2xl max-h-[65px] rounded-full h-fit'>
             <div className='flex items-center gap-x-3 w-full'>
                 <LoadMorePokemonButton loadMorePokemons={loadMorePokemons} />
                 <NavigationMenu className="absolute right-2 ">
