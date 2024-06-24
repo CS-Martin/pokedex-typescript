@@ -1,6 +1,5 @@
 'use client'
 
-import React, { Suspense } from 'react';
 import { useDisplayPokemons } from '@/hooks/catalogue'; // Adjust path as per your project structure
 import PokemonCard from './pokemon-card';
 import SearchPokemon from '@/components/custom-components/search';
@@ -26,8 +25,6 @@ const CatalogueContainer: React.FC<CatalogueContainerProps> = ({ limit }) => {
         <div className=' mt-32 w-full'>
             <div className='flex'>
                 <SearchPokemon />
-                <Separator orientation="vertical" className='' />
-                <Button variant='outline'>Sort</Button>
             </div>
             <Separator className='my-3' />
             <div className='grid grid-cols-2 gap-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2'>

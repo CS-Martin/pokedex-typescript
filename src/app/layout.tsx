@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import localFont from "next/font/local"
+import { AOSInit } from "@/components/providers/aos-provider";
 
 const MinecraftFont = localFont({ src: '/minecraft.ttf' })
 
@@ -18,6 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <AOSInit />
       <body className={MinecraftFont.className}>
         <ThemeProvider
           attribute="class"
