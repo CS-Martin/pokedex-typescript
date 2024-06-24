@@ -12,7 +12,7 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ onClick }): JSX.Ele
     
     return (
         <div className='fixed bottom-5 w-full md:w-[330px] bg-transparent max-h-[65px] h-fit bottom-nav-container'>
-            <div className='flex items-center gap-x-3'>
+            <div className='flex items-center gap-x-3 w-full'>
                 <LoadMorePokemonButton onClick={onClick} />
                 <ModeToggle />
             </div>  

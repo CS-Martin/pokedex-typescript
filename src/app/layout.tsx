@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import localFont from "next/font/local"
 
-const inter = Inter({ subsets: ["latin"] });
 const MinecraftFont = localFont({ src: '/minecraft.ttf' })
 
 export const metadata: Metadata = {
