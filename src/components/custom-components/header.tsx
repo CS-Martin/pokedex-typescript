@@ -14,7 +14,6 @@ const Header = () => {
             </div>
 
             <div className="flex gap-x-7 items-center">
-                <ModeToggle />
             </div>
         </nav>
     );

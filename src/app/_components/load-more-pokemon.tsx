@@ -6,11 +6,9 @@ type LoadMorePokemonButtonProps = {
 
 const LoadMorePokemonButton: React.FC<LoadMorePokemonButtonProps> = ({ onClick }) => {
     return (
-        <div>
-            <Button onClick={onClick}>
-                Load More Pokemon
-            </Button>
-        </div>
+        <Button className="w-full rounded-full py-6 bottom-nav-container" onClick={onClick}>
+            Load More Pokemon
+        </Button>
     );
 }
 

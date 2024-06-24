@@ -39,7 +39,7 @@ const SearchPokemon = () => {
             <Search size={20} className='absolute ms-4' />
             <Input
                 type="text"
-                placeholder="Search for a pokemon"
+                placeholder="Search a pokemon by name or ID"
                 className="w-full h-full border-0 py-3 ps-14 focus-visible:ring-transparent"
                 onChange={(e) => {
                     handleSearch(e.target.value);

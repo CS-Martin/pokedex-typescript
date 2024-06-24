@@ -30,8 +30,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
                 <DisplayPokemonImage image={image} name={name} size={200} />
             </div>
             <div className="px-1">
-                <p>{id}</p>
-                <p>{name}</p>
+                <p className="sm:text-[18px]">{id}</p>
+                <p className="sm:text-[20px]">{name}</p>
             </div>
         </div>
     );

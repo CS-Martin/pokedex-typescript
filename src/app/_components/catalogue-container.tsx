@@ -1,36 +1,29 @@
 'use client'
 
 import React from 'react';
-import { useState } from 'react';
 import { useDisplayPokemons } from '@/hooks/catalogue'; // Adjust path as per your project structure
 import PokemonCard from './pokemon-card';
-import LoadMorePokemonButton from './load-more-pokemon';
 import SearchPokemon from '@/components/custom-components/search';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { useSearchParams } from 'next/navigation';
 
+type CatalogueContainerProps = {
+    limit: number;
+}
 /**
  * Renders the CatalogueContainer component with a list of pokemons fetched based on the limit.
  *
  * @return {JSX.Element} The rendered CatalogueContainer component
  */
-const CatalogueContainer: React.FC = () => {
+const CatalogueContainer: React.FC<CatalogueContainerProps> = ({ limit }) => {
     const searchParams = useSearchParams();
     const search: string = searchParams?.get('search') || '';
 
-    const [limit, setLimit] = useState(10);
     const pokemons = useDisplayPokemons(limit, search);
 
-    /**
-     * Increases the limit by 10 and updates the state
-     */
-    const handleLoadMore = (): void => {
-        setLimit((prevLimit) => prevLimit + 10);
-    }
-
     return (
-        <div className='mt-40 w-full'>
+        <div className=' mt-32 w-full'>
             <div className='flex'>
                 <SearchPokemon />
                 <Separator orientation="vertical" className='' />
@@ -49,9 +42,7 @@ const CatalogueContainer: React.FC = () => {
                     />
                 ))}
             </div>
-            <div className='flex justify-center py-8'>
-                <LoadMorePokemonButton onClick={handleLoadMore} />
-            </div>
+            <Separator className='my-4' />
         </div>
     );
 };
