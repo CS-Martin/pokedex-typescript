@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ModeToggle } from "./theme-toggler";
 
 /**
  * Renders the header component.

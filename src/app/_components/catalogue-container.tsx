@@ -5,7 +5,8 @@ import PokemonCard from './pokemon-card';
 import SearchPokemon from '@/components/custom-components/search';
 import { Separator } from '@/components/ui/separator';
 import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import Tilt from 'react-parallax-tilt';
+
 
 type CatalogueContainerProps = {
     limit: number;
@@ -19,7 +20,7 @@ type CatalogueContainerProps = {
 const CatalogueContainer: React.FC<CatalogueContainerProps> = ({ limit, sortMethod }) => {
     const searchParams = useSearchParams();
     const search: string = searchParams?.get('search') || '';
-    
+
     const pokemons = useDisplayPokemons(limit, search, sortMethod);
 
     return (
@@ -30,14 +31,25 @@ const CatalogueContainer: React.FC<CatalogueContainerProps> = ({ limit, sortMeth
             <Separator className='my-3' />
             <div className='grid grid-cols-2 gap-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2'>
                 {pokemons.map((pokemon) => (
-                    <PokemonCard
-                        key={pokemon.name}
-                        id={pokemon.id}
-                        name={pokemon.name}
-                        url={pokemon.url}
-                        image={pokemon.image}
-                        types={pokemon.types}
-                    />
+                    <Tilt 
+                        glareEnable={true} 
+                        glareMaxOpacity={0.1} 
+                        glareColor="lightblue" 
+                        glarePosition="all" 
+                        glareBorderRadius="10px"
+                        transitionSpeed={3000}
+                        scale={1.07}
+                        >
+                        <PokemonCard
+                            key={pokemon.name}
+                            id={pokemon.id}
+                            name={pokemon.name}
+                            url={pokemon.url}
+                            image={pokemon.image}
+                            types={pokemon.types}
+                        />
+
+                    </Tilt>
                 ))}
             </div>
             <Separator className='my-4' />

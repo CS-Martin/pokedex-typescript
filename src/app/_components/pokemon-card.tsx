@@ -2,6 +2,7 @@ import React from "react";
 import type { Pokemon as PokemonCardProps } from "@/types/pokemon";
 import DisplayPokemonImage from "@/components/custom-components/pokemon-image";
 import { PokemonTypeBadge } from "@/components/custom-components/pokemon-type/type-badge";
+import Tilt from 'react-parallax-tilt';
 
 /**
  * Renders a PokemonCard component with the given properties.
@@ -23,7 +24,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
         <div data-aos="fade-up" className="border rounded-lg w-full py-5 px-3 relative bg-card">
             <div className="absolute flex gap-2 flex-wrap">
                 {types?.map((type: string, index: number) => {
-                    return <PokemonTypeBadge key={index} type={type} />;
+                    return <Tilt scale={1.07}><PokemonTypeBadge key={index} type={type} /></Tilt>;
                 })}
             </div>
             <div className="flex justify-center mt-5">
