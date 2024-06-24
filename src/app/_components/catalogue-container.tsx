@@ -32,6 +32,7 @@ const CatalogueContainer: React.FC<CatalogueContainerProps> = ({ limit, sortMeth
             <div className='grid grid-cols-2 gap-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2'>
                 {pokemons.map((pokemon) => (
                     <Tilt 
+                        key={pokemon.id}
                         glareEnable={true} 
                         glareMaxOpacity={0.1} 
                         glareColor="lightblue" 
@@ -41,7 +42,6 @@ const CatalogueContainer: React.FC<CatalogueContainerProps> = ({ limit, sortMeth
                         scale={1.07}
                         >
                         <PokemonCard
-                            key={pokemon.name}
                             id={pokemon.id}
                             name={pokemon.name}
                             url={pokemon.url}

@@ -21,10 +21,10 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
     types
 }: PokemonCardProps): JSX.Element => {
     return (
-        <div data-aos="fade-up" className="border rounded-lg w-full py-5 px-3 relative bg-card">
+        <div key={id} data-aos="fade-up" className="border rounded-lg w-full py-5 px-3 relative bg-card">
             <div className="absolute flex gap-2 flex-wrap">
                 {types?.map((type: string, index: number) => {
-                    return <Tilt scale={1.07}><PokemonTypeBadge key={index} type={type} /></Tilt>;
+                    return <Tilt key={index} scale={1.07}><PokemonTypeBadge type={type} /></Tilt>;
                 })}
             </div>
             <div className="flex justify-center mt-5">

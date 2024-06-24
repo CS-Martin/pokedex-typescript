@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AOSInit />
-      <body className={MinecraftFont.className}>
+      <body className={MinecraftFont.className} suppressHydrationWarning={true}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

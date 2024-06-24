@@ -1,5 +1,4 @@
 import React from 'react';
-import LoadMorePokemonButton from '@/app/_components/load-more-pokemon';
 import {
     NavigationMenu,
     NavigationMenuItem,
@@ -9,6 +8,7 @@ import {
 import { cn } from '@/lib/utils';
 import { ModeToggle } from './theme-toggler';
 import SortPokemonsButton from './sort-button';
+import LoadMorePokemonButton from './load-more-pokemon';
 
 type BottomNavigationProps = {
     loadMorePokemons: () => void;

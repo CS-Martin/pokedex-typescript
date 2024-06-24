@@ -13,9 +13,9 @@ const LoadMorePokemonButton: React.FC<LoadMorePokemonButtonProps> = ({ loadMoreP
         >
             <ArrowDown
                 size={24}
-                className="absolute animate-bounce left-0 ml-4 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 group-hover:ml-4"
+                className="absolute animate-bounce left-0 ml-4 sm:opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 group-hover:ml-4"
             />
-            <p className="transition-transform duration-500 ease-in-out group-hover:translate-x-6">
+            <p className="transition-transform duration-500 ease-in-out group-hover:translate-x-6 translate-x-6 sm:translate-x-0">
                 Load More Pokemon
             </p>
         </Button>

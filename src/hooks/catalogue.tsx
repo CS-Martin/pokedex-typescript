@@ -37,7 +37,6 @@ export const useDisplayPokemons = (limit: number, searchParam: string, sortMetho
                     sortFetchedPokemons(pokemonWithTypes, sortMethod);
                 }
 
-                console.log(pokemonWithTypes);
                 setPokemons(pokemonWithTypes);
             } catch (error) {
                 throw new Error("An error occurred while fetching pokemons");
