@@ -29,7 +29,7 @@ export const useDisplayPokemons = (limit: number, searchParam: string, sortMetho
                 const pokemonWithTypes = await Promise.all(
                     filteredPokemons.map(async (pokemon) => ({
                         ...pokemon,
-                        types: await fetchPokemonTypesById(String(parseInt(pokemon.id, 10))),
+                        types: await fetchPokemonTypesById(pokemon.id),
                     }))
                 );
 
@@ -64,10 +64,10 @@ function sortFetchedPokemons(pokemons: Pokemon[], sortMethod: string): void {
             pokemons.sort((a, b) => b.name.localeCompare(a.name));
             break;
         case '01':
-            pokemons.sort((a, b) => parseInt(a.id, 10) - parseInt(b.id, 10));
+            pokemons.sort((a, b) => a.id - b.id);
             break;
         case '10':
-            pokemons.sort((a, b) => parseInt(b.id, 10) - parseInt(a.id, 10));
+            pokemons.sort((a, b) => b.id - a.id);
             break;
         default:
             pokemons.sort((a, b) => a.name.localeCompare(b.name));
@@ -81,7 +81,7 @@ function sortFetchedPokemons(pokemons: Pokemon[], sortMethod: string): void {
  * @param {string} pokemonId - The ID of the Pokemon to fetch types for (Ex. '1' not '001').
  * @return {Promise<string[]>} An array of strings representing the types of the Pokemon.
  */
-const fetchPokemonTypesById = async (pokemonId: string): Promise<string[]> => {
+const fetchPokemonTypesById = async (pokemonId: number): Promise<string[]> => {
     try {
         // Check if local storage contains the pokemon types
 

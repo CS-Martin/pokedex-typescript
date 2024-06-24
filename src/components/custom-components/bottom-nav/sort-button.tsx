@@ -16,7 +16,7 @@ const SortPokemonsButton: React.FC<SortPokemonsButtonProps> = ({ sortPokemons })
     return (
         <>
             <NavigationMenuTrigger>
-                <ArrowDownAZ size={18} /> <span className="ms-1">Sort</span>
+                <ArrowDownAZ size={18} /> <span className="ms-1 hidden sm:block">Sort</span>
             </NavigationMenuTrigger>
             <NavigationMenuContent className="">
                 <ul className="p-6 w-[330px] lg:w-[360px]">

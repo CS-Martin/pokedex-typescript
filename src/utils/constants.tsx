@@ -64,27 +64,45 @@ export function getPokemonStrength() {
     //   return strength[pokemonType];
 }
 
-export function getPokemonColor() {
-    const colors = {
-        bug: "#92BC2C",
-        dark: "#595761",
-        dragon: "#0C69C8",
-        electric: "#EDD53E",
-        fire: "#FD7D24",
-        fairy: "#EC8CE5",
-        fighting: "#D04164",
-        flying: "#8FA8DD",
-        ghost: "#516AAC",
-        grass: "#5DBE62",
-        ground: "#DC7545",
-        ice: "#70CCBD",
-        normal: "#9298A4",
-        poison: "#A864C7",
-        psychic: "#F66F71",
-        rock: "#C5B489",
-        steel: "#52869D",
-        water: "#4A90DA",
-    };
-
-    //   return colors[pokemonType];
+export function getPokemonColor(hex: string): string {
+    switch (hex) {
+        case "normal":
+            return "#9298A4";
+        case "fighting":
+            return "#D04164";
+        case "flying":
+            return "#8FA8DD";
+        case "poison":
+            return "#A864C7";
+        case "ground":
+            return "#DC7545";
+        case "rock":
+            return "#C5B489";
+        case "bug":
+            return "#92BC2C";
+        case "ghost":
+            return "#516AAC";
+        case "steel":
+            return "#52869D";
+        case "fire":
+            return "#FD7D24";
+        case "water":
+            return "#4A90DA";
+        case "grass":
+            return "#5DBE62";
+        case "electric":
+            return "#EDD53E";
+        case "psychic":
+            return "#F66F71";
+        case "ice":
+            return "#70CCBD";
+        case "dragon":
+            return "#0C69C8";
+        case "dark":
+            return "#595761";
+        case "fairy":
+            return "#EC8CE5";
+        default:
+            return "#000000";
+    }
 }

@@ -1,5 +1,5 @@
 export type Pokemon = {
-    id: string;
+    id: number;
     name: string;
     url: string;
     image?: string;
@@ -20,4 +20,5 @@ export type PokemonStats = {
 
 export type PokemonImage = Pick<Pokemon, 'image' | 'name'> & {
     size: number;
+    className: string;
 };
