@@ -8,7 +8,7 @@ type LoadMorePokemonButtonProps = {
 const LoadMorePokemonButton: React.FC<LoadMorePokemonButtonProps> = ({ loadMorePokemons }) => {
     return (
         <Button
-            className="w-full text-[15px] rounded-full py-6 flex items-center justify-start relative group"
+            className="w-full text-[15px] rounded-full py-7 flex items-center justify-start relative group"
             onClick={loadMorePokemons}
         >
             <ArrowDown

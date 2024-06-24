@@ -77,6 +77,21 @@
   }
 }
 
-/* .grass-card {
-  filter: drop-shadow(1px 1px 12px #000);
-} */
+.hovered-text {
+  transform: translateY(-40px);
+  transition: transform 0.3s ease;
+}
+
+.card-container {
+  transition: transform 0.3s ease;
+}
+
+.card-container:hover {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 640px) {
+  .hovered-text {
+    transform: translateY(0px);
+  }
+}
