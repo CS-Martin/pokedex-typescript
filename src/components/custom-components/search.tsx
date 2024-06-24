@@ -2,7 +2,7 @@ import { Search } from 'lucide-react';
 import { Input } from '../ui/input';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
-import { memo, useCallback } from 'react';
+import { memo, Suspense } from 'react';
 
 /**
  * Renders a search component that allows the user to search for a Pokemon by name or ID.
@@ -22,7 +22,7 @@ const SearchPokemon = () => {
      * @param {string} key - The search input value.
      * @return {void}
      */
-    const handleSearch = useDebouncedCallback(useCallback((key: string): void => {
+    const handleSearch = useDebouncedCallback((key: string): void => {
         const params = new URLSearchParams(searchParams);
 
         if (key) {
@@ -32,7 +32,7 @@ const SearchPokemon = () => {
         }
 
         replace(`${pathname}?${params.toString()}`);
-    }, [searchParams, pathname]), 500);
+    }, 500);
 
     return (
         <div className='flex items-center w-full'>

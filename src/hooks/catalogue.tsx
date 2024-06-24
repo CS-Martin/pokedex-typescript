@@ -22,13 +22,13 @@ export const useDisplayPokemons = (limit: number, searchParam: string) => {
                 }
 
                 const filteredPokemons = searchParam
-                    ? useFetchSearchedPokemons(searchParam, pokemonList)
+                    ? fetchSearchedPokemons(searchParam, pokemonList)
                     : pokemonList.slice(0, limit);
 
                 const pokemonWithTypes = await Promise.all(
                     filteredPokemons.map(async (pokemon) => ({
                         ...pokemon,
-                        types: await useFetchPokemonTypesById(String(parseInt(pokemon.id, 10))),
+                        types: await fetchPokemonTypesById(String(parseInt(pokemon.id, 10))),
                     }))
                 );
 
@@ -51,7 +51,7 @@ export const useDisplayPokemons = (limit: number, searchParam: string) => {
  * @param {string} pokemonId - The ID of the Pokemon to fetch types for (Ex. '1' not '001').
  * @return {Promise<string[]>} An array of strings representing the types of the Pokemon.
  */
-const useFetchPokemonTypesById = async (pokemonId: string): Promise<string[]> => {
+const fetchPokemonTypesById = async (pokemonId: string): Promise<string[]> => {
     try {
         // Check if local storage contains the pokemon types
 
@@ -69,7 +69,7 @@ const useFetchPokemonTypesById = async (pokemonId: string): Promise<string[]> =>
  * @param {Pokemon[]} pokemons - The array of Pokemon to filter.
  * @return {Pokemon[]} The filtered array of Pokemon.
  */
-const useFetchSearchedPokemons = (searchParams: string, pokemons: Pokemon[]) => {
+const fetchSearchedPokemons = (searchParams: string, pokemons: Pokemon[]) => {
     const searchedPokemons = pokemons.filter((pokemon) =>
         pokemon.name.toLowerCase().includes(searchParams.toLowerCase()) ||
         pokemon.id.toString().includes(searchParams)

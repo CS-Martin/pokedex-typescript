@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useDisplayPokemons } from '@/hooks/catalogue'; // Adjust path as per your project structure
 import PokemonCard from './pokemon-card';
 import SearchPokemon from '@/components/custom-components/search';
