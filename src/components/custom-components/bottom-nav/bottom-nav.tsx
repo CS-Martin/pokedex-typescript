@@ -18,10 +18,10 @@ type BottomNavigationProps = {
 
 const BottomNavigation: React.FC<BottomNavigationProps> = ({ loadMorePokemons, sortPokemons }): JSX.Element => {
     return (
-        <div className='fixed bottom-5 w-full sm:w-[385px] bg-transparent max-h-[65px] h-fit bottom-nav-container'>
+        <div className='fixed bottom-5 animate-fade w-full sm:w-[385px] bg-transparent max-h-[65px] h-fit bottom-nav-container'>
             <div className='flex items-center gap-x-3 w-full'>
                 <LoadMorePokemonButton loadMorePokemons={loadMorePokemons} />
-                <NavigationMenu orientation="vertical" className="absolute right-2 ">
+                <NavigationMenu className="absolute right-2 ">
                     <NavigationMenuList className="bg-background rounded-full">
                         <NavigationMenuItem>
                             <SortPokemonsButton sortPokemons={sortPokemons}  />
