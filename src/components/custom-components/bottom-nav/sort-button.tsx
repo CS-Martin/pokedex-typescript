@@ -1,17 +1,18 @@
 "use client"
 
 import * as React from "react"
-import { ArrowDown01, ArrowDownAZ, ArrowDownZA, ArrowUp10, ArrowUpZA, Moon, Sun, SunMoon } from "lucide-react"
-import { useTheme } from "next-themes"
+import { ArrowDown01, ArrowDownAZ, ArrowUp10, ArrowUpZA } from "lucide-react"
 import {
     NavigationMenuContent,
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import { ListItem } from "./bottom-nav"
-import { NavigationMenuViewport } from '@radix-ui/react-navigation-menu';
 
+type SortPokemonsButtonProps = {
+    sortPokemons: (method: string) => void;
+}
 
-export function Test() {
+const SortPokemonsButton: React.FC<SortPokemonsButtonProps> = ({ sortPokemons }) => {
     return (
         <>
             <NavigationMenuTrigger>
@@ -19,25 +20,25 @@ export function Test() {
             </NavigationMenuTrigger>
             <NavigationMenuContent className="">
                 <ul className="p-6 w-[330px] lg:w-[360px]">
-                    <ListItem>
+                    <ListItem onClick={() => sortPokemons("AZ")}>
                         <span className="flex justify-between items-center">
                             Sort by Name (A - Z)
                             <ArrowDownAZ size={20} />
                         </span>
                     </ListItem>
-                    <ListItem>
+                    <ListItem onClick={() => sortPokemons("ZA")}>
                         <span className="flex justify-between items-center">
                             Sort by Name (Z - A)
                             <ArrowUpZA size={20} />
                         </span>
                     </ListItem>
-                    <ListItem>
+                    <ListItem onClick={() => sortPokemons("01")}>
                         <span className="flex justify-between items-center">
                             Sort by ID (Increasing)
                             <ArrowDown01 size={20} />
                         </span>
                     </ListItem>
-                    <ListItem>
+                    <ListItem onClick={() => sortPokemons("10")}>
                         <span className="flex justify-between items-center">
                             Sort by ID (Decreasing)
                             <ArrowUp10 size={20} />
@@ -48,3 +49,5 @@ export function Test() {
         </>
     );
 }
+
+export default SortPokemonsButton;

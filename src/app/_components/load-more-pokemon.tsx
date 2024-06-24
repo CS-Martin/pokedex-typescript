@@ -2,14 +2,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown, ArrowRight } from "lucide-react"; // Import the ArrowRight icon
 
 type LoadMorePokemonButtonProps = {
-    onClick: () => void;
+    loadMorePokemons: () => void;
 }
 
-const LoadMorePokemonButton: React.FC<LoadMorePokemonButtonProps> = ({ onClick }) => {
+const LoadMorePokemonButton: React.FC<LoadMorePokemonButtonProps> = ({ loadMorePokemons }) => {
     return (
         <Button
             className="w-full text-[15px] rounded-full py-6 bottom-nav-container flex items-center justify-start relative group"
-            onClick={onClick}
+            onClick={loadMorePokemons}
         >
             <ArrowDown
                 size={24}

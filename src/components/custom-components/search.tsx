@@ -13,7 +13,6 @@ const SearchPokemon = () => {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
-    console.log("Search Rendered");
 
     /**
      * Handles the search input change and updates the URL search params.

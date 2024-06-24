@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
  *
  * @param {number} limit - The maximum number of pokemons to display.
  * @param {string} searchParam - The search parameter to filter the pokemons.
- * @return {Pokemon[] | null} An array of pokemons or null if an error occurred.
+ * @param {string} sortMethod - The method to sort the pokemons.
+ * @return {Pokemon[]} An array of pokemons or an empty array if an error occurred.
  */
-export const useDisplayPokemons = (limit: number, searchParam: string) => {
+export const useDisplayPokemons = (limit: number, searchParam: string, sortMethod: string): Pokemon[] => {
     const [pokemons, setPokemons] = useState<Pokemon[] | null>(null);
 
     useEffect(() => {
@@ -22,7 +23,7 @@ export const useDisplayPokemons = (limit: number, searchParam: string) => {
                 }
 
                 const filteredPokemons = searchParam
-                    ? fetchSearchedPokemons(searchParam, pokemonList)
+                    ? fetchSearchedPokemons(searchParam, pokemonList).slice(0, limit)
                     : pokemonList.slice(0, limit);
 
                 const pokemonWithTypes = await Promise.all(
@@ -32,6 +33,10 @@ export const useDisplayPokemons = (limit: number, searchParam: string) => {
                     }))
                 );
 
+                if (sortMethod && sortMethod !== 'AZ') {
+                    sortFetchedPokemons(pokemonWithTypes, sortMethod);
+                }
+
                 console.log(pokemonWithTypes);
                 setPokemons(pokemonWithTypes);
             } catch (error) {
@@ -40,10 +45,36 @@ export const useDisplayPokemons = (limit: number, searchParam: string) => {
         };
 
         fetchPokemons();
-    }, [limit, searchParam]);
+    }, [limit, searchParam, sortMethod]);
 
     return pokemons || [];
 };
+
+/**
+ * Sorts an array of Pokemon objects based on the provided sort method.
+ *
+ * @param {Pokemon[]} pokemons - The array of Pokemon objects to be sorted.
+ * @param {string} sortMethod - The method by which the Pokemon objects should be sorted.
+ * @return {void} This function does not return a value.
+ */
+function sortFetchedPokemons(pokemons: Pokemon[], sortMethod: string): void {
+    switch (sortMethod) {
+        case 'AZ':
+            break;
+        case 'ZA':
+            pokemons.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+        case '01':
+            pokemons.sort((a, b) => parseInt(a.id, 10) - parseInt(b.id, 10));
+            break;
+        case '10':
+            pokemons.sort((a, b) => parseInt(b.id, 10) - parseInt(a.id, 10));
+            break;
+        default:
+            pokemons.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+    }
+}
 
 /**
  * Fetches the types of a specific Pokemon by its ID.

@@ -4,22 +4,23 @@ import { useDisplayPokemons } from '@/hooks/catalogue'; // Adjust path as per yo
 import PokemonCard from './pokemon-card';
 import SearchPokemon from '@/components/custom-components/search';
 import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
 import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 type CatalogueContainerProps = {
     limit: number;
+    sortMethod: string;
 }
 /**
  * Renders the CatalogueContainer component with a list of pokemons fetched based on the limit.
  *
  * @return {JSX.Element} The rendered CatalogueContainer component
  */
-const CatalogueContainer: React.FC<CatalogueContainerProps> = ({ limit }) => {
+const CatalogueContainer: React.FC<CatalogueContainerProps> = ({ limit, sortMethod }) => {
     const searchParams = useSearchParams();
     const search: string = searchParams?.get('search') || '';
-
-    const pokemons = useDisplayPokemons(limit, search);
+    
+    const pokemons = useDisplayPokemons(limit, search, sortMethod);
 
     return (
         <div className=' mt-32 w-full'>

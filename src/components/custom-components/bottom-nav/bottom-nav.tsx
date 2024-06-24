@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './bottom-nav.css';
 import LoadMorePokemonButton from '@/app/_components/load-more-pokemon';
 import {
@@ -10,21 +9,22 @@ import {
 } from "@/components/ui/navigation-menu"
 import { cn } from '@/lib/utils';
 import { ModeToggle } from './theme-toggler';
-import { Test } from './sort-button';
+import SortPokemonsButton from './sort-button';
+
 type BottomNavigationProps = {
-    onClick: () => void;
+    loadMorePokemons: () => void;
+    sortPokemons: (method: string) => void;
 }
 
-const BottomNavigation: React.FC<BottomNavigationProps> = ({ onClick }): JSX.Element => {
-
+const BottomNavigation: React.FC<BottomNavigationProps> = ({ loadMorePokemons, sortPokemons }): JSX.Element => {
     return (
         <div className='fixed bottom-5 w-full sm:w-[385px] bg-transparent max-h-[65px] h-fit bottom-nav-container'>
             <div className='flex items-center gap-x-3 w-full'>
-                <LoadMorePokemonButton onClick={onClick} />
+                <LoadMorePokemonButton loadMorePokemons={loadMorePokemons} />
                 <NavigationMenu orientation="vertical" className="absolute right-2 ">
                     <NavigationMenuList className="bg-background rounded-full">
                         <NavigationMenuItem>
-                            <Test />
+                            <SortPokemonsButton sortPokemons={sortPokemons}  />
                         </NavigationMenuItem>
                         <NavigationMenuItem>
                             <ModeToggle />
