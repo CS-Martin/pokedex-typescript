@@ -14,7 +14,7 @@ export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
         if (storedPokemons) {
             return JSON.parse(storedPokemons) as Pokemon[];
         } else {
-            const response: Response = await fetch(`${POKEAPI_POKEMONS_URL}?limit=1000&offset=0`);
+            const response: Response = await fetch(`${POKEAPI_POKEMONS_URL}?limit=1010&offset=0`);
 
             if (!response.ok) {
                 throw new Error("Failed to fetch pokemons");
