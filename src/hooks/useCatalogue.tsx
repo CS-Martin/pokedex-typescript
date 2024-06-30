@@ -13,7 +13,7 @@ interface useDisplayPokemonsProps {
  * @param {number} limit - The maximum number of pokemons to display.
  * @param {string} searchParam - The search parameter to filter the pokemons.
  * @param {string} sortMethod - The method to sort the pokemons.
- * @return {Pokemon[]} An array of pokemons or an empty array if an error occurred.
+ * @return {useDisplayPokemonsProps} An object containing an array of pokemons or null if an error occurred and a loading state.
  */
 export const useDisplayPokemons = (limit: number, searchParam: string, sortMethod: string): useDisplayPokemonsProps => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -23,18 +23,18 @@ export const useDisplayPokemons = (limit: number, searchParam: string, sortMetho
         const fetchPokemons = async () => {
             try {
                 setIsLoading(true);
-                const pokemonList = await fetchAllPokemons();
+                const pokemonList: Pokemon[] | null = await fetchAllPokemons();
 
                 if (!pokemonList) {
                     throw new Error('Failed to fetch pokemons');
                 }
 
-                const filteredPokemons = searchParam
+                const filteredPokemons: Pokemon[] = searchParam
                     ? fetchSearchedPokemons(searchParam, pokemonList).slice(0, limit)
                     : pokemonList.slice(0, limit);
 
-                const pokemonWithTypes = await Promise.all(
-                    filteredPokemons.map(async (pokemon) => ({
+                const pokemonWithTypes: Pokemon[] = await Promise.all(
+                    filteredPokemons.map(async (pokemon: Pokemon) => ({
                         ...pokemon,
                         types: await fetchPokemonTypesById(pokemon.id)
                     }))

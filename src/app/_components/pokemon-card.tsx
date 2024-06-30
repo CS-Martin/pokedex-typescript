@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Pokemon } from '@/types/pokemon';
 
-type PokemonCardProps = Pick<Pokemon, 'id' | 'name' | 'image' | 'types' | 'url'>
+type PokemonCardProps = Pick<Pokemon, 'id' | 'name' | 'image' | 'types' | 'url'>;
 
 /**
  * Renders a PokemonCard component with the given properties.

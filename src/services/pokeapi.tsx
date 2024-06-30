@@ -1,7 +1,7 @@
 import { Pokemon, PokemonPageProps } from '@/types/pokemon';
 import { POKEAPI_POKEMONS_DESCRIPTION_URL, POKEAPI_POKEMONS_IMAGE_URL, POKEAPI_POKEMONS_URL } from '@/utils/constants';
 
-export const fetchAllPokemons = async (): Promise<Partial<Pokemon[]>> => {
+export const fetchAllPokemons = async (): Promise<Pokemon[] | null> => {
     try {
         const response: Response = await fetch(`${POKEAPI_POKEMONS_URL}?limit=1010&offset=0`);
         const data: { results: Pokemon[] } = await response.json();
@@ -23,7 +23,7 @@ export const fetchAllPokemons = async (): Promise<Partial<Pokemon[]>> => {
         if (error instanceof Error) {
             throw new Error(error.message);
         }
-        throw new Error('An error occurred while fetching pokemons');
+        return null;
     }
 };
 

@@ -56,7 +56,7 @@ const PokemonDescription: React.FC<PokemonDetailsProps> = ({ description, pokemo
     };
 
     return (
-        <div className="col-span-2 border-t py-5 border-b">
+        <div className="col-span-2 border-b border-t py-5">
             <div className={`${showMore ? 'h-fit' : 'max-h-[350px]'} relative overflow-y-hidden`}>
                 <p className="mb-2 text-label">Description:</p>
                 {description?.map((desc, index) => (
