@@ -20,8 +20,8 @@ const PokemonDetailsPage = (): JSX.Element => {
         : '#000000';
 
     return (
-        <main className="container px-28">
-            <div className="mt-[100px] grid grid-cols-[0.4fr_1fr] gap-5">
+        <main className="container relative py-[90px] h-[100%] px-28">
+            <div className="grid grid-cols-[0.4fr_1fr] gap-5">
                 <section className="pokemon-image">
                     <PokemonImage
                         cardBackground={cardBackground}
@@ -29,7 +29,7 @@ const PokemonDetailsPage = (): JSX.Element => {
                         image={pokemon?.image || ''}
                     />
                     <Separator className="my-4" />
-                    <PokemonStats stats={pokemon?.stats} />
+                    <PokemonStats stats={pokemon?.stats} progressBarColor={cardBackground} />
                 </section>
 
                 <section className="pokemon-details">

@@ -2,9 +2,11 @@ import { ProgressAfter } from '@/components/ui/progress';
 import { Pokemon } from '@/types/pokemon';
 import { useEffect, useState } from 'react';
 
-type PokemonStatsProps = Partial<Pick<Pokemon, 'stats'>>;
+type PokemonStatsProps = Partial<Pick<Pokemon, 'stats'>> & {
+    progressBarColor: string
+};
 
-const PokemonStats: React.FC<PokemonStatsProps> = ({ stats }): JSX.Element => {
+const PokemonStats: React.FC<PokemonStatsProps> = ({ stats, progressBarColor }): JSX.Element => {
     const StatsTitle = ['HEALTH', 'ATTACK', 'DEFENSE', 'SPECIAL ATTACK', 'SPECIAL DEFENSE', 'SPEED'];
 
     return (
@@ -18,7 +20,7 @@ const PokemonStats: React.FC<PokemonStatsProps> = ({ stats }): JSX.Element => {
                             <p>{stat.base}/255</p>
                         </div>
                         <div>
-                            <StatsProgressBar base={stat.base} />
+                            <StatsProgressBar base={stat.base} progressBarColor={progressBarColor} />
                         </div>
                     </div>
                 ))}
@@ -26,11 +28,11 @@ const PokemonStats: React.FC<PokemonStatsProps> = ({ stats }): JSX.Element => {
     );
 };
 
-type StatsProgressBarProps = {
+type StatsProgressBarProps = Pick<PokemonStatsProps, 'progressBarColor'> & {
     base: number;
 };
 
-const StatsProgressBar: React.FC<StatsProgressBarProps> = ({ base }) => {
+const StatsProgressBar: React.FC<StatsProgressBarProps> = ({ base, progressBarColor }) => {
     const [progress, setProgress] = useState<number>(0);
 
     useEffect(() => {
@@ -38,7 +40,7 @@ const StatsProgressBar: React.FC<StatsProgressBarProps> = ({ base }) => {
         return () => clearTimeout(timer);
     }, [base]);
 
-    return <ProgressAfter max={255} value={progress} />;
+    return <ProgressAfter max={255} color={progressBarColor} value={progress} />;
 };
 
 export default PokemonStats;
