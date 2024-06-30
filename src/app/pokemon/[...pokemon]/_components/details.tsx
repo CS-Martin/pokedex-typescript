@@ -1,8 +1,11 @@
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { cleanDescription } from '@/lib/utils';
 import { Pokemon } from '@/types/pokemon';
 import React, { useState } from 'react';
+import { Inter } from 'next/font/google';
+import { PacmanLoader } from 'react-spinners';
+
+const inter = Inter({ subsets: ['latin'] });
 
 type PokemonDetailsProps = Partial<Omit<Pokemon, 'image' | 'url'>> & {
     pokemonColor: string;
@@ -36,16 +39,29 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ pokemonColor, ...pokemo
 
 const PokemonDescription: React.FC<PokemonDetailsProps> = ({ description, pokemonColor }) => {
     const [showMore, setShowMore] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const handleShowMore = () => {
+        setIsLoading(true);
+
+        if (showMore === false) {
+            setTimeout(() => {
+                setShowMore(true);
+                setIsLoading(false);
+            }, 1500);
+        } else {
+            setShowMore(!showMore);
+            setIsLoading(false);
+        }
+    };
 
     return (
-        <div className="col-span-2 border-t">
+        <div className="col-span-2 border-t py-5">
             <div className={`${showMore ? 'h-fit' : 'max-h-[350px]'} relative overflow-y-hidden`}>
                 <p className="mb-2 text-label">Description:</p>
                 {description?.map((desc, index) => (
                     <div data-aos="fade-up" key={index} className="relative">
-                        <p key={index} className="mt-3 w-[90%]">
-                            {cleanDescription(desc)}
-                        </p>
+                        <p className={`mt-3 w-[90%]`}>{cleanDescription(desc)}</p>
                         <small style={{ color: pokemonColor }} className="absolute right-0 top-0">
                             [{index + 1}]
                         </small>
@@ -53,11 +69,22 @@ const PokemonDescription: React.FC<PokemonDetailsProps> = ({ description, pokemo
                 ))}
             </div>
             <Button
+                disabled={isLoading}
                 style={{ color: pokemonColor }}
-                onClick={() => setShowMore(!showMore)}
+                onClick={handleShowMore}
                 variant="outline"
-                className="mt-3 w-full">
-                Load more description
+                className="relative mt-3 w-full">
+                {isLoading ? (
+                    <PacmanLoader
+                        color={pokemonColor}
+                        size={10}
+                        className={`${isLoading ? 'pacman-loader-slide-in' : 'pacman-loader-slide-out'}`}
+                    />
+                ) : showMore ? (
+                    'Show less'
+                ) : (
+                    'Show more'
+                )}
             </Button>
         </div>
     );
