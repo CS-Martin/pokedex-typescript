@@ -29,7 +29,7 @@ const LoadMorePokemonButton: React.FC<LoadMorePokemonButtonProps> = ({ loadMoreP
                     top: document.body.scrollHeight,
                     behavior: 'smooth'
                 }),
-            500
+            900
         );
     };
 

@@ -128,3 +128,31 @@
 .pacman-loader-slide-out {
     animation: slideOut 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
 }
+
+@keyframes dotFlashing {
+    0% {
+        content: '';
+    }
+    25% {
+        content: '.';
+    }
+    50% {
+        content: '..';
+    }
+    75% {
+        content: '...';
+    }
+    100% {
+        content: '';
+    }
+}
+
+.dot-flashing::after {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    white-space: pre;
+    width: 1ch;
+    animation: dotFlashing 1.5s infinite steps(4, end);
+    content: '';
+}

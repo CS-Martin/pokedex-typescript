@@ -6,8 +6,9 @@ import { useSearchParams } from 'next/navigation';
 import Tilt from 'react-parallax-tilt';
 import BottomNavigation from '@/components/custom-components/bottom-nav/bottom-nav';
 import { useDisplayPokemons } from '@/hooks/useCatalogue';
+import Loading from '../loading';
 
-const CatalogueContainer: React.FC = () => {
+const CatalogueContainer: React.FC = (): JSX.Element => {
     const searchParams = useSearchParams();
     const search: string = searchParams?.get('search') || '';
     const [limit, setLimit] = useState(10);
@@ -22,6 +23,10 @@ const CatalogueContainer: React.FC = () => {
     }, []);
 
     const { pokemons, isLoading } = useDisplayPokemons(limit, search, sortMethod);
+
+    if (isLoading && limit <= 10 && search === '') {
+        return <Loading />
+    }
 
     return (
         <div className="mt-32 w-full">

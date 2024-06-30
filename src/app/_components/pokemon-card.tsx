@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import type { Pokemon as PokemonCardProps } from '@/types/pokemon';
 import DisplayPokemonImage from '@/components/custom-components/pokemon-image';
 import { PokemonTypeBadge } from '@/components/custom-components/pokemon-type/type-badge';
 import Tilt from 'react-parallax-tilt';
@@ -7,6 +6,9 @@ import { getPokemonColor } from '@/utils/constants';
 import { CapitalizeString } from '@/utils/utils';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { Pokemon } from '@/types/pokemon';
+
+type PokemonCardProps = Pick<Pokemon, 'id' | 'name' | 'image' | 'types' | 'url'>
 
 /**
  * Renders a PokemonCard component with the given properties.
