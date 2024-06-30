@@ -1,21 +1,39 @@
 export type Pokemon = {
     id: number;
     name: string;
+    base_experience: number;
+    height: number;
+    weight: number;
     url: string;
-    image?: string;
-    types?: string[];
-    height?: number;
-    weight?: number;
-    stats?: PokemonStats;
-    abilities?: string[];
+    image: string;
+    types: string[];
+    stats: PokemonStats;
+    abilities: string[];
 };
 
+export type PokemonPageProps = Omit<Pokemon, 'url'>;
+
 export type PokemonStats = {
-    attack?: number;
-    defense?: number;
-    specialAttack?: number;
-    specialDefense?: number;
-    speed?: number;
+    attack: {
+        base: number;
+        effort: number;
+    };
+    defense: {
+        base: number;
+        effort: number;
+    };
+    specialAttack: {
+        base: number;
+        effort: number;
+    };
+    specialDefense: {
+        base: number;
+        effort: number;
+    };
+    speed: {
+        base: number;
+        effort: number;
+    };
 };
 
 export type PokemonImage = Pick<Pokemon, 'image' | 'name'> & {

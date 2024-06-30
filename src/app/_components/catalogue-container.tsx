@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from 'react';
-import { useDisplayPokemons } from '@/hooks/catalogue'; // Adjust path as per your project structure
 import PokemonCard from './pokemon-card';
 import SearchPokemon from '@/components/custom-components/search';
 import { Separator } from '@/components/ui/separator';
 import { useSearchParams } from 'next/navigation';
 import Tilt from 'react-parallax-tilt';
 import BottomNavigation from '@/components/custom-components/bottom-nav/bottom-nav';
+import { useDisplayPokemons } from '@/hooks/useCatalogue';
 
 const CatalogueContainer: React.FC = () => {
     const searchParams = useSearchParams();

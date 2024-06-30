@@ -13,7 +13,7 @@ const LoadMorePokemonButton: React.FC<LoadMorePokemonButtonProps> = ({ loadMoreP
 
     useEffect(() => {
         if (!isLoading) {
-            const timeout = setTimeout(() => setWasLoading(false), 500);
+            const timeout = setTimeout(() => setWasLoading(false), 900);
             return () => clearTimeout(timeout);
         } else {
             // Scroll to bottom and delay the scroll

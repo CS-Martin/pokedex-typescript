@@ -1,7 +1,7 @@
-import { Pokemon } from '@/types/pokemon';
+import { Pokemon, PokemonPageProps, PokemonPageTypes, PokemonStats } from '@/types/pokemon';
 import { POKEAPI_POKEMONS_IMAGE_URL, POKEAPI_POKEMONS_URL } from '@/utils/constants';
 
-export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
+export const fetchAllPokemons = async (): Promise<Partial<Pokemon[]>> => {
     try {
         const response: Response = await fetch(`${POKEAPI_POKEMONS_URL}?limit=1010&offset=0`);
         const data: { results: Pokemon[] } = await response.json();
@@ -48,6 +48,45 @@ export const fetchPokemonTypes = async (id: number): Promise<string[]> => {
         });
 
         return pokemonTypes;
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        }
+
+        throw new Error('An error occured while fetching pokemon details');
+    }
+};
+
+export const fetchPokemonDetails = async (pokemonName: string): Promise<PokemonPageProps> => {
+    try {
+        const response: Response = await fetch(`${POKEAPI_POKEMONS_URL}${pokemonName}`);
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch pokemon details');
+        }
+
+        const data: any = await response.json();
+
+        const pokemon: PokemonPageProps = {
+            id: data.id,
+            name: data.name,
+            base_experience: data.base_experience,
+            height: data.height,
+            weight: data.weight,
+            stats: data.stats.map((statsInfo: { base_stat: number; effort: number }) => {
+                return {
+                    base: statsInfo.base_stat,
+                    effot: statsInfo.effort
+                };
+            }),
+            image: `${POKEAPI_POKEMONS_IMAGE_URL}${String(data.id).padStart(3, '0')}.png`,
+            types: data.types.map((typeInfo: any) => {
+                return typeInfo.type.name;
+            }),
+            abilities: []
+        };
+
+        return pokemon;
     } catch (error) {
         if (error instanceof Error) {
             throw new Error(error.message);

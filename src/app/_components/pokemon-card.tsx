@@ -20,7 +20,6 @@ import { Button } from '@/components/ui/button';
  */
 const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, image, types }: PokemonCardProps): JSX.Element => {
     const cardBackground = types ? getPokemonColor(types[0].replace(/\s+/g, '').toLowerCase()) : '#000000';
-    const test = '[#654321]';
 
     return (
         <div
@@ -32,8 +31,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, image, types }: Pok
                     className={`z-[-1] h-64 w-64 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
                     style={{
                         background: `radial-gradient(circle, ${cardBackground} 0%, rgba(255, 255, 255, 0.03) 50%)`
-                    }}>
-                </div>
+                    }}></div>
             </div>
             <div className="absolute flex flex-wrap gap-2">
                 {types?.map((type: string, index: number) => (
@@ -55,7 +53,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, image, types }: Pok
                 <p className="sm:text-[18px]">{CapitalizeString(name)}</p>
             </div>
             <div className="absolute left-0 right-0 top-[100%] mx-3 duration-500 ease-in-out group-hover:-translate-y-[50px]">
-                <Link href="">
+                <Link href={`/pokemon/${id}/${name}/details`}>
                     <Button className="w-full px-4 py-2 transition-colors">
                         <span>View {CapitalizeString(name)} Details</span>
                     </Button>
