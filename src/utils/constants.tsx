@@ -9,6 +9,11 @@ export const POKEAPI_BASE_URL: string = 'https://pokeapi.co/api/v2';
 export const POKEAPI_POKEMONS_URL: string = `${POKEAPI_BASE_URL}/pokemon/`;
 
 /**
+ * URL for accessing Pokemon descriptions from the PokeAPI.
+ */
+export const POKEAPI_POKEMONS_DESCRIPTION_URL: string = `${POKEAPI_BASE_URL}/pokemon-species/`;
+
+/**
  * URL for accessing full-size Pokemon images from the Pokemon website.
  */
 export const POKEAPI_POKEMONS_IMAGE_URL: string = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/';

@@ -15,25 +15,25 @@ const PokemonDetailsPage = (): JSX.Element => {
     const pokemonName = params.pokemon[1];
 
     const pokemon: PokemonPageProps | null = useDisplayPokemonDetails(pokemonName);
-    const cardBackground = pokemon?.types
+    const pokemonColor = pokemon?.types
         ? getPokemonColor(pokemon.types[0].replace(/\s+/g, '').toLowerCase())
         : '#000000';
 
     return (
-        <main className="container relative py-[90px] h-[100%] px-28">
-            <div className="grid grid-cols-[0.4fr_1fr] gap-5">
-                <section className="pokemon-image">
+        <main className="container relative h-[100%] px-52 py-[90px]">
+            <div className="grid gap-5 md:grid-cols-[1fr_0.4fr]">
+                <section data-aos="fade-right" className="pokemon-details">
+                    <PokemonDetails {...pokemon} pokemonColor={pokemonColor} />
+                </section>
+
+                <section data-aos="fade-left" className="pokemon-image">
                     <PokemonImage
-                        cardBackground={cardBackground}
+                        cardBackground={pokemonColor}
                         name={pokemon?.name || ''}
                         image={pokemon?.image || ''}
                     />
                     <Separator className="my-4" />
-                    <PokemonStats stats={pokemon?.stats} progressBarColor={cardBackground} />
-                </section>
-
-                <section className="pokemon-details">
-                    <PokemonDetails {...pokemon} />
+                    <PokemonStats stats={pokemon?.stats} progressBarColor={pokemonColor} />
                 </section>
             </div>
         </main>

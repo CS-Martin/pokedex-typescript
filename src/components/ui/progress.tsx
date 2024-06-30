@@ -16,7 +16,7 @@ const ProgressAfter = React.forwardRef<
         className={cn('relative h-4 w-full overflow-hidden rounded-full bg-secondary', className)}
         {...props}>
         <ProgressPrimitive.Indicator
-            className="h-full w-full flex-1 bg-primary transition-all rounded-full"
+            className="h-full w-full flex-1 animate-pulse rounded-full bg-primary transition-all duration-1000"
             style={{
                 transform: `translateX(-${100 - Math.min(100, ((value || 0) / (max || 100)) * 100)}%)`,
                 backgroundColor: `${color}`

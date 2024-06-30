@@ -3,7 +3,7 @@ import { Pokemon } from '@/types/pokemon';
 import { useEffect, useState } from 'react';
 
 type PokemonStatsProps = Partial<Pick<Pokemon, 'stats'>> & {
-    progressBarColor: string
+    progressBarColor: string;
 };
 
 const PokemonStats: React.FC<PokemonStatsProps> = ({ stats, progressBarColor }): JSX.Element => {

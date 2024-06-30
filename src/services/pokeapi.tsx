@@ -1,5 +1,5 @@
-import { Pokemon, PokemonPageProps, PokemonPageTypes, PokemonStats } from '@/types/pokemon';
-import { POKEAPI_POKEMONS_IMAGE_URL, POKEAPI_POKEMONS_URL } from '@/utils/constants';
+import { Pokemon, PokemonPageProps } from '@/types/pokemon';
+import { POKEAPI_POKEMONS_DESCRIPTION_URL, POKEAPI_POKEMONS_IMAGE_URL, POKEAPI_POKEMONS_URL } from '@/utils/constants';
 
 export const fetchAllPokemons = async (): Promise<Partial<Pokemon[]>> => {
     try {
@@ -67,9 +67,13 @@ export const fetchPokemonDetails = async (pokemonName: string): Promise<PokemonP
 
         const data: any = await response.json();
 
+        const pokemonDescription = await fetchPokemonDescription(data.name);
+        // console.log(pokemonDescription);
+
         const pokemon: PokemonPageProps = {
             id: data.id,
             name: data.name,
+            description: pokemonDescription,
             base_experience: data.base_experience,
             height: data.height,
             weight: data.weight,
@@ -93,5 +97,40 @@ export const fetchPokemonDetails = async (pokemonName: string): Promise<PokemonP
         }
 
         throw new Error('An error occured while fetching pokemon details');
+    }
+};
+
+const fetchPokemonDescription = async (pokemonName: string): Promise<string[]> => {
+    try {
+        const response: Response = await fetch(`${POKEAPI_POKEMONS_DESCRIPTION_URL}${pokemonName}`);
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch pokemon description');
+        }
+
+        const data: any = await response.json();
+
+        // Filter english pokemon description(flavor texts)
+        const englishFlavorTexts = data.flavor_text_entries.filter((entry: any) => entry.language.name === 'en');
+
+        // Create a set to store unique flavor texts
+        const uniqueFlavorTexts = new Set<string>();
+
+        // Extract up to 3 unique flavor texts from englishFlavorTexts
+        const descriptions = [];
+        for (const entry of englishFlavorTexts) {
+            if (!uniqueFlavorTexts.has(entry.flavor_text)) {
+                uniqueFlavorTexts.add(entry.flavor_text);
+                descriptions.push(entry.flavor_text);
+            }
+        }
+
+        return descriptions;
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        }
+
+        throw new Error('An error occured while fetching pokemon description');
     }
 };

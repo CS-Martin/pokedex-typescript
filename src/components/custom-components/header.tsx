@@ -14,8 +14,9 @@ const Header = () => {
     console.log(pathname);
     return (
         <nav
-            className={`${pathname === '/' ? 'h-[100px]' : 'h-[65px]'} z-10 absolute top-0 flex w-full border-b transition-all duration-500`}>
-            <div className={`${pathname === '/' ? '' : 'px-28'} container transition-all duration-500 flex items-center justify-between`}>
+            className={`${pathname === '/' ? 'h-[100px]' : 'h-[65px]'} absolute top-0 z-10 flex w-full border-b transition-all duration-500`}>
+            <div
+                className={`${pathname === '/' ? '' : 'px-52'} container flex items-center justify-between transition-all duration-500`}>
                 <div>
                     <Link href={'/'}>
                         <Image priority={true} src={'/pokedex-logo.png'} alt="Pokedex Logo" width={100} height={100} />
