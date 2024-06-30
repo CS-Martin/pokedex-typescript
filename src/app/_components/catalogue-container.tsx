@@ -24,7 +24,7 @@ const CatalogueContainer: React.FC = (): JSX.Element => {
 
     const { pokemons, isLoading } = useDisplayPokemons(limit, search, sortMethod);
 
-    if (isLoading && limit <= 10 && search === '') {
+    if (isLoading && limit <= 10 && search === '' && sortMethod === '') {
         return <Loading />;
     }
 
