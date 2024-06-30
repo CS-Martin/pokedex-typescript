@@ -9,13 +9,7 @@ const Header = () => {
     return (
         <nav className="container absolute flex h-[100px] w-full items-center justify-between">
             <div>
-                <Image
-                    priority={true}
-                    src={'/pokedex-logo.png'}
-                    alt="Pokedex Logo"
-                    width={100}
-                    height={100}
-                />
+                <Image priority={true} src={'/pokedex-logo.png'} alt="Pokedex Logo" width={100} height={100} />
             </div>
 
             <div>

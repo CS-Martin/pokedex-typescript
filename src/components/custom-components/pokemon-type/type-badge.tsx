@@ -60,8 +60,7 @@ export const Dark = () => {
                 height="24"
                 viewBox="0 0 512 512"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                     fill-rule="evenodd"
                     clip-rule="evenodd"
@@ -77,11 +76,7 @@ export const Dark = () => {
 export const Dragon = () => {
     return (
         <div className="icon-container bg-[#0C69C8]">
-            <img
-                src="/icons/dragon.svg"
-                className="dragon py-1"
-                alt="Dragon Icon"
-            />
+            <img src="/icons/dragon.svg" className="dragon py-1" alt="Dragon Icon" />
             <small className="ml-1 hidden sm:block">Dragon</small>
         </div>
     );
@@ -90,11 +85,7 @@ export const Dragon = () => {
 export const Electric = () => {
     return (
         <div className="icon-container bg-[#EDD53E]">
-            <img
-                src="/icons/electric.svg"
-                className="electric py-1"
-                alt="Electric Icon"
-            />
+            <img src="/icons/electric.svg" className="electric py-1" alt="Electric Icon" />
             <small className="ml-1 hidden sm:block">Electric</small>
         </div>
     );
@@ -112,11 +103,7 @@ export const Fire = () => {
 export const Fairy = () => {
     return (
         <div className="icon-container bg-[#EC8CE5]">
-            <img
-                src="/icons/fairy.svg"
-                className="fairy py-1"
-                alt="Fairy Icon"
-            />
+            <img src="/icons/fairy.svg" className="fairy py-1" alt="Fairy Icon" />
             <small className="ml-1 hidden sm:block">Fairy</small>
         </div>
     );
@@ -125,11 +112,7 @@ export const Fairy = () => {
 export const Fighting = () => {
     return (
         <div className="icon-container bg-[#D3425F]">
-            <img
-                src="/icons/fighting.svg"
-                className="fighting py-1"
-                alt="Fighting Icon"
-            />
+            <img src="/icons/fighting.svg" className="fighting py-1" alt="Fighting Icon" />
             <small className="ml-1 hidden sm:block">Fighting</small>
         </div>
     );
@@ -138,11 +121,7 @@ export const Fighting = () => {
 export const Flying = () => {
     return (
         <div className="icon-container bg-[#A1BBEC]">
-            <img
-                src="/icons/flying.svg"
-                className="flying py-1"
-                alt="Flying Icon"
-            />
+            <img src="/icons/flying.svg" className="flying py-1" alt="Flying Icon" />
             <small className="ml-1 hidden sm:block">Flying</small>
         </div>
     );
@@ -151,11 +130,7 @@ export const Flying = () => {
 export const Ghost = () => {
     return (
         <div className="icon-container bg-[#516AAC]">
-            <img
-                src="/icons/ghost.svg"
-                className="ghost py-1"
-                alt="Ghost Icon"
-            />
+            <img src="/icons/ghost.svg" className="ghost py-1" alt="Ghost Icon" />
             <small className="ml-1 hidden sm:block">Ghost</small>
         </div>
     );
@@ -164,11 +139,7 @@ export const Ghost = () => {
 export const Grass = () => {
     return (
         <div className="icon-container bg-[#5DBE62]">
-            <img
-                src="/icons/grass.svg"
-                className="grass py-1"
-                alt="Grass Icon"
-            />
+            <img src="/icons/grass.svg" className="grass py-1" alt="Grass Icon" />
             <small className="ml-1 hidden sm:block">Grass</small>
         </div>
     );
@@ -177,11 +148,7 @@ export const Grass = () => {
 export const Ground = () => {
     return (
         <div className="icon-container bg-[#DA7C4D]">
-            <img
-                src="/icons/ground.svg"
-                className="ground py-1"
-                alt="Ground Icon"
-            />
+            <img src="/icons/ground.svg" className="ground py-1" alt="Ground Icon" />
             <small className="ml-1 hidden sm:block">Ground</small>
         </div>
     );
@@ -199,11 +166,7 @@ export const Ice = () => {
 export const Normal = () => {
     return (
         <div className="icon-container bg-[#A0A29F]">
-            <img
-                src="/icons/normal.svg"
-                className="normal py-1"
-                alt="Normal Icon"
-            />
+            <img src="/icons/normal.svg" className="normal py-1" alt="Normal Icon" />
             <small className="ml-1 hidden sm:block">Normal</small>
         </div>
     );
@@ -212,11 +175,7 @@ export const Normal = () => {
 export const Poison = () => {
     return (
         <div className="icon-container bg-[#B763CF]">
-            <img
-                src="/icons/poison.svg"
-                className="poison py-1"
-                alt="Poison Icon"
-            />
+            <img src="/icons/poison.svg" className="poison py-1" alt="Poison Icon" />
             <small className="ml-1 hidden sm:block">Poison</small>
         </div>
     );
@@ -225,11 +184,7 @@ export const Poison = () => {
 export const Psychic = () => {
     return (
         <div className="icon-container bg-[#FA8581]">
-            <img
-                src="/icons/psychic.svg"
-                className="psychic py-1"
-                alt="Psychic Icon"
-            />
+            <img src="/icons/psychic.svg" className="psychic py-1" alt="Psychic Icon" />
             <small className="ml-1 hidden sm:block">Psychic</small>
         </div>
     );
@@ -247,11 +202,7 @@ export const Rock = () => {
 export const Steel = () => {
     return (
         <div className="icon-container bg-[#5A8EA1]">
-            <img
-                src="/icons/steel.svg"
-                className="steel py-1"
-                alt="Steel Icon"
-            />
+            <img src="/icons/steel.svg" className="steel py-1" alt="Steel Icon" />
             <small className="ml-1 hidden sm:block">Steel</small>
         </div>
     );
@@ -260,11 +211,7 @@ export const Steel = () => {
 export const Water = () => {
     return (
         <div className="icon-container bg-[#539DDF]">
-            <img
-                src="/icons/water.svg"
-                className="water py-1"
-                alt="Water Icon"
-            />
+            <img src="/icons/water.svg" className="water py-1" alt="Water Icon" />
             <small className="ml-1 hidden sm:block">Water</small>
         </div>
     );

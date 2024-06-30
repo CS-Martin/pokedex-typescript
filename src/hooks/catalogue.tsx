@@ -15,11 +15,7 @@ interface useDisplayPokemonsProps {
  * @param {string} sortMethod - The method to sort the pokemons.
  * @return {Pokemon[]} An array of pokemons or an empty array if an error occurred.
  */
-export const useDisplayPokemons = (
-    limit: number,
-    searchParam: string,
-    sortMethod: string
-): useDisplayPokemonsProps => {
+export const useDisplayPokemons = (limit: number, searchParam: string, sortMethod: string): useDisplayPokemonsProps => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [pokemons, setPokemons] = useState<Pokemon[] | null>(null);
 
@@ -34,10 +30,7 @@ export const useDisplayPokemons = (
                 }
 
                 const filteredPokemons = searchParam
-                    ? fetchSearchedPokemons(searchParam, pokemonList).slice(
-                          0,
-                          limit
-                      )
+                    ? fetchSearchedPokemons(searchParam, pokemonList).slice(0, limit)
                     : pokemonList.slice(0, limit);
 
                 const pokemonWithTypes = await Promise.all(

@@ -4,10 +4,7 @@ import * as React from 'react';
 import { Moon, Sun, SunMoon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { ListItem } from './bottom-nav';
-import {
-    NavigationMenuContent,
-    NavigationMenuTrigger
-} from '@/components/ui/navigation-menu';
+import { NavigationMenuContent, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
 
 export function ModeToggle() {
     const { setTheme, resolvedTheme } = useTheme();

@@ -8,10 +8,7 @@ type LoadMorePokemonButtonProps = {
     isLoading: boolean;
 };
 
-const LoadMorePokemonButton: React.FC<LoadMorePokemonButtonProps> = ({
-    loadMorePokemons,
-    isLoading
-}) => {
+const LoadMorePokemonButton: React.FC<LoadMorePokemonButtonProps> = ({ loadMorePokemons, isLoading }) => {
     const [wasLoading, setWasLoading] = useState(isLoading);
 
     useEffect(() => {
@@ -40,8 +37,7 @@ const LoadMorePokemonButton: React.FC<LoadMorePokemonButtonProps> = ({
         <Button
             className="group relative flex w-full items-center justify-start rounded-full py-7 text-[15px]"
             onClick={handleLoadMorePokemons}
-            disabled={isLoading}
-        >
+            disabled={isLoading}>
             {wasLoading ? (
                 <>
                     <PacmanLoader

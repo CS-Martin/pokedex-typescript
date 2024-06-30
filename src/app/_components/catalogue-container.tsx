@@ -21,11 +21,7 @@ const CatalogueContainer: React.FC = () => {
         setSortMethod(method);
     }, []);
 
-    const { pokemons, isLoading } = useDisplayPokemons(
-        limit,
-        search,
-        sortMethod
-    );
+    const { pokemons, isLoading } = useDisplayPokemons(limit, search, sortMethod);
 
     return (
         <div className="mt-32 w-full">
@@ -43,8 +39,7 @@ const CatalogueContainer: React.FC = () => {
                         glarePosition="all"
                         glareBorderRadius="10px"
                         transitionSpeed={3000}
-                        scale={1.07}
-                    >
+                        scale={1.07}>
                         <PokemonCard
                             id={pokemon.id}
                             name={pokemon.name}

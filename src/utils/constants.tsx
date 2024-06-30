@@ -11,8 +11,7 @@ export const POKEAPI_POKEMONS_URL: string = `${POKEAPI_BASE_URL}/pokemon/`;
 /**
  * URL for accessing full-size Pokemon images from the Pokemon website.
  */
-export const POKEAPI_POKEMONS_IMAGE_URL: string =
-    'https://assets.pokemon.com/assets/cms2/img/pokedex/full/';
+export const POKEAPI_POKEMONS_IMAGE_URL: string = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/';
 
 // // https://www.eurogamer.net/pokemon-go-type-chart-effectiveness-weaknesses
 export function getPokemonWeakness() {
@@ -23,15 +22,7 @@ export function getPokemonWeakness() {
         poison: ['poison', 'ground', 'rock', 'ghost', 'steel'],
         ground: ['flying', 'bug', 'grass'],
         rock: ['fighting', 'ground', 'steel'],
-        bug: [
-            'fighting',
-            'flying',
-            'poison',
-            'ghost',
-            'steel',
-            'fire',
-            'fairy'
-        ],
+        bug: ['fighting', 'flying', 'poison', 'ghost', 'steel', 'fire', 'fairy'],
         ghost: ['normal', 'dark'],
         steel: ['steel', 'fire', 'water', 'electric'],
         fire: ['rock', 'fire', 'water', 'dragon'],

@@ -2,24 +2,18 @@
 
 import * as React from 'react';
 import { ArrowDown01, ArrowDownAZ, ArrowUp10, ArrowUpZA } from 'lucide-react';
-import {
-    NavigationMenuContent,
-    NavigationMenuTrigger
-} from '@/components/ui/navigation-menu';
+import { NavigationMenuContent, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
 import { ListItem } from './bottom-nav';
 
 type SortPokemonsButtonProps = {
     sortPokemons: (method: string) => void;
 };
 
-const SortPokemonsButton: React.FC<SortPokemonsButtonProps> = ({
-    sortPokemons
-}) => {
+const SortPokemonsButton: React.FC<SortPokemonsButtonProps> = ({ sortPokemons }) => {
     return (
         <>
             <NavigationMenuTrigger>
-                <ArrowDownAZ size={18} />{' '}
-                <span className="ms-1 hidden sm:block">Sort</span>
+                <ArrowDownAZ size={18} /> <span className="ms-1 hidden sm:block">Sort</span>
             </NavigationMenuTrigger>
             <NavigationMenuContent className="">
                 <ul className="w-[330px] p-6 lg:w-[360px]">
