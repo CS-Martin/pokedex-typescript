@@ -1,4 +1,8 @@
+'use client';
+
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 /**
  * Renders the header component.
@@ -6,18 +10,25 @@ import Image from 'next/image';
  * @return {JSX.Element} The header component.
  */
 const Header = () => {
+    const pathname = usePathname();
+    console.log(pathname);
     return (
-        <nav className="container absolute flex h-[100px] w-full items-center justify-between">
-            <div>
-                <Image priority={true} src={'/pokedex-logo.png'} alt="Pokedex Logo" width={100} height={100} />
-            </div>
+        <nav
+            className={`${pathname === '/' ? 'h-[100px]' : 'h-[65px]'} fixed top-0 flex w-full border-b transition-all duration-500`}>
+            <div className={`${pathname === '/' ? '' : 'px-28'} container flex items-center justify-between`}>
+                <div>
+                    <Link href={'/'}>
+                        <Image priority={true} src={'/pokedex-logo.png'} alt="Pokedex Logo" width={100} height={100} />
+                    </Link>
+                </div>
 
-            <div>
-                <small>&#47;&#42; Still under development &#42;&#47;</small>
-            </div>
+                <div>
+                    <small>&#47;&#42; Still under development &#42;&#47;</small>
+                </div>
 
-            <div className="flex items-center gap-x-7">
-                <small>Created by: Martin</small>
+                <div className="flex items-center gap-x-7">
+                    <small>Created by: Martin</small>
+                </div>
             </div>
         </nav>
     );

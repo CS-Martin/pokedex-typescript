@@ -1,11 +1,11 @@
-import { Progress, ProgressAfter } from '@/components/ui/progress';
+import { ProgressAfter } from '@/components/ui/progress';
 import { Pokemon } from '@/types/pokemon';
 import { useEffect, useState } from 'react';
 
 type PokemonStatsProps = Partial<Pick<Pokemon, 'stats'>>;
 
 const PokemonStats: React.FC<PokemonStatsProps> = ({ stats }): JSX.Element => {
-    const StatsTitle = ['HP', 'ATT', 'DEFENSE', 'SPECIAL ATTACK', 'SPECIAL DEFENSE', 'SPEED'];
+    const StatsTitle = ['HEALTH', 'ATTACK', 'DEFENSE', 'SPECIAL ATTACK', 'SPECIAL DEFENSE', 'SPEED'];
 
     return (
         <div className="flex flex-col gap-y-3">
@@ -15,7 +15,7 @@ const PokemonStats: React.FC<PokemonStatsProps> = ({ stats }): JSX.Element => {
                     <div key={index}>
                         <div className="flex justify-between">
                             {StatsTitle[index]}
-                            <small>{stat.base}/255</small>
+                            <p>{stat.base}/255</p>
                         </div>
                         <div>
                             <StatsProgressBar base={stat.base} />

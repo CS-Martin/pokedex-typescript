@@ -8,7 +8,6 @@ import { Suspense, useState } from 'react';
 export default function Home() {
     return (
         <main className="relative flex h-[100vh] items-start justify-center px-5 md:container">
-            <Header />
             <Suspense>
                 <CatalogueContainer />
             </Suspense>
