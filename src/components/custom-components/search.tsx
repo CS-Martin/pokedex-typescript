@@ -17,7 +17,7 @@ const SearchPokemon = () => {
     /**
      * Handles the search input change and updates the URL search params.
      * useCallback is used to prevent unnecessary search component re-renders.
-     * 
+     *
      * @param {string} key - The search input value.
      * @return {void}
      */
@@ -34,12 +34,12 @@ const SearchPokemon = () => {
     }, 300);
 
     return (
-        <div className='flex items-center w-full'>
-            <Search size={20} className='absolute ms-4' />
+        <div className="flex w-full items-center">
+            <Search size={20} className="absolute ms-4" />
             <Input
                 type="text"
                 placeholder="Search a pokemon by name or ID"
-                className="w-full h-full border-0 py-3 ps-14 focus-visible:ring-transparent"
+                className="h-full w-full border-0 py-3 ps-14 focus-visible:ring-transparent"
                 onChange={(e) => {
                     handleSearch(e.target.value);
                 }}
@@ -47,6 +47,6 @@ const SearchPokemon = () => {
             />
         </div>
     );
-}
+};
 
 export default memo(SearchPokemon);

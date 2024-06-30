@@ -1,12 +1,12 @@
 .icon-container {
-    @apply flex items-center justify-center rounded-full sm:rounded-md shadow-lg px-[6px] w-fit;
+    @apply flex w-fit items-center justify-center rounded-full px-[6px] shadow-lg sm:rounded-md;
 }
 
 .bug {
     width: 14px;
-    background: #92BC2C;
-    box-shadow: 0 0 20px #92BC2C;
-} 
+    background: #92bc2c;
+    box-shadow: 0 0 20px #92bc2c;
+}
 
 .dark-icon {
     width: 14px;
@@ -14,99 +14,98 @@
     box-shadow: 0 0 20px #595761;
 }
 
-
 .dragon {
     width: 14px;
-    background: #0C69C8;
-    box-shadow: 0 0 20px #0C69C8;
+    background: #0c69c8;
+    box-shadow: 0 0 20px #0c69c8;
 }
 
 .electric {
     width: 14px;
-    background: #F2D94E;
-    box-shadow: 0 0 20px #F2D94E;
+    background: #f2d94e;
+    box-shadow: 0 0 20px #f2d94e;
 }
 
 .fire {
     width: 14px;
-    background: #FBA54C;
-    box-shadow: 0 0 20px #FBA54C;
+    background: #fba54c;
+    box-shadow: 0 0 20px #fba54c;
 }
 
 .fairy {
     width: 14px;
-    background: #EE90E6;
-    box-shadow: 0 0 20px #EE90E6;
+    background: #ee90e6;
+    box-shadow: 0 0 20px #ee90e6;
 }
 
 .fighting {
     width: 14px;
-    background: #D3425F;
-    box-shadow: 0 0 20px #D3425F;
+    background: #d3425f;
+    box-shadow: 0 0 20px #d3425f;
 }
 
 .flying {
     width: 14px;
-    background: #A1BBEC;
-    box-shadow: 0 0 20px #A1BBEC;
+    background: #a1bbec;
+    box-shadow: 0 0 20px #a1bbec;
 }
 
 .ghost {
     width: 14px;
-    background: #5F6DBC;
-    box-shadow: 0 0 20px #5F6DBC;
+    background: #5f6dbc;
+    box-shadow: 0 0 20px #5f6dbc;
 }
 
 .grass {
     width: 14px;
-    background: #5FBD58;
-    box-shadow: 0 0 20px #5FBD58;
+    background: #5fbd58;
+    box-shadow: 0 0 20px #5fbd58;
 }
 
 .ground {
     width: 14px;
-    background: #DA7C4D;
-    box-shadow: 0 0 20px #DA7C4D;
+    background: #da7c4d;
+    box-shadow: 0 0 20px #da7c4d;
 }
 
 .ice {
     width: 14px;
-    background: #75D0C1;
-    box-shadow: 0 0 20px #75D0C1;
+    background: #75d0c1;
+    box-shadow: 0 0 20px #75d0c1;
 }
 
 .normal {
     width: 14px;
-    background: #A0A29F;
-    box-shadow: 0 0 20px #A0A29F;
+    background: #a0a29f;
+    box-shadow: 0 0 20px #a0a29f;
 }
 
 .poison {
     width: 14px;
-    background: #B763CF;
-    box-shadow: 0 0 20px #B763CF;
+    background: #b763cf;
+    box-shadow: 0 0 20px #b763cf;
 }
 
 .psychic {
     width: 14px;
-    background: #FA8581;
-    box-shadow: 0 0 20px #FA8581;
+    background: #fa8581;
+    box-shadow: 0 0 20px #fa8581;
 }
 
 .rock {
     width: 14px;
-    background: #C9BB8A;
-    box-shadow: 0 0 20px #C9BB8A;
+    background: #c9bb8a;
+    box-shadow: 0 0 20px #c9bb8a;
 }
 
 .steel {
     width: 14px;
-    background: #5695A3;
-    box-shadow: 0 0 20px #5695A3;
+    background: #5695a3;
+    box-shadow: 0 0 20px #5695a3;
 }
 
 .water {
     width: 14px;
-    background: #539DDF;
-    box-shadow: 0 0 20px #539DDF;
+    background: #539ddf;
+    box-shadow: 0 0 20px #539ddf;
 }

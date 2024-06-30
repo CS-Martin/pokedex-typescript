@@ -1,6 +1,11 @@
-import { fetchAllPokemons, fetchPokemonTypes } from "@/services/pokeapi"
-import { Pokemon } from "@/types/pokemon";
-import { useEffect, useState } from "react";
+import { fetchAllPokemons, fetchPokemonTypes } from '@/services/pokeapi';
+import { Pokemon } from '@/types/pokemon';
+import { useEffect, useState } from 'react';
+
+interface useDisplayPokemonsProps {
+    pokemons: Pokemon[] | null;
+    isLoading: boolean;
+}
 
 /**
  * Fetches and displays a limited number of pokemons based on the search parameter.
@@ -10,26 +15,35 @@ import { useEffect, useState } from "react";
  * @param {string} sortMethod - The method to sort the pokemons.
  * @return {Pokemon[]} An array of pokemons or an empty array if an error occurred.
  */
-export const useDisplayPokemons = (limit: number, searchParam: string, sortMethod: string): Pokemon[] => {
+export const useDisplayPokemons = (
+    limit: number,
+    searchParam: string,
+    sortMethod: string
+): useDisplayPokemonsProps => {
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [pokemons, setPokemons] = useState<Pokemon[] | null>(null);
 
     useEffect(() => {
         const fetchPokemons = async () => {
             try {
-                const pokemonList = await getPokemonsFromLocalStorage();
+                setIsLoading(true);
+                const pokemonList = await fetchAllPokemons();
 
                 if (!pokemonList) {
-                    throw new Error("Failed to fetch pokemons");
+                    throw new Error('Failed to fetch pokemons');
                 }
 
                 const filteredPokemons = searchParam
-                    ? fetchSearchedPokemons(searchParam, pokemonList).slice(0, limit)
+                    ? fetchSearchedPokemons(searchParam, pokemonList).slice(
+                          0,
+                          limit
+                      )
                     : pokemonList.slice(0, limit);
 
                 const pokemonWithTypes = await Promise.all(
                     filteredPokemons.map(async (pokemon) => ({
                         ...pokemon,
-                        types: await fetchPokemonTypesById(pokemon.id),
+                        types: await fetchPokemonTypesById(pokemon.id)
                     }))
                 );
 
@@ -38,15 +52,23 @@ export const useDisplayPokemons = (limit: number, searchParam: string, sortMetho
                 }
 
                 setPokemons(pokemonWithTypes);
+
+                // Let's delay the loading state to prevent multiple clicks
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, 1500);
             } catch (error) {
-                throw new Error("An error occurred while fetching pokemons");
+                throw new Error('An error occurred while fetching pokemons');
             }
         };
 
         fetchPokemons();
     }, [limit, searchParam, sortMethod]);
 
-    return pokemons || [];
+    return {
+        pokemons,
+        isLoading
+    };
 };
 
 /**
@@ -100,33 +122,11 @@ const fetchPokemonTypesById = async (pokemonId: number): Promise<string[]> => {
  * @return {Pokemon[]} The filtered array of Pokemon.
  */
 const fetchSearchedPokemons = (searchParams: string, pokemons: Pokemon[]) => {
-    const searchedPokemons = pokemons.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchParams.toLowerCase()) ||
-        pokemon.id.toString().includes(searchParams)
+    const searchedPokemons = pokemons.filter(
+        (pokemon) =>
+            pokemon.name.toLowerCase().includes(searchParams.toLowerCase()) ||
+            pokemon.id.toString().includes(searchParams)
     );
 
     return searchedPokemons as Pokemon[];
-}
-
-/**
- * Retrieves an array of Pokemon from local storage, or fetches them from the PokeAPI if not found.
- *
- * @return {Promise<Pokemon[] | null>} A promise that resolves to an array of Pokemon objects, or null if an error occurred.
- */
-const getPokemonsFromLocalStorage = (): Promise<Pokemon[] | null> => {
-    return new Promise((resolve, reject) => {
-        try {
-            const storedPokemons = localStorage.getItem('pokemons');
-
-            if (storedPokemons) {
-                resolve(JSON.parse(storedPokemons) as Pokemon[]);
-            } else {
-                const pokemons = fetchAllPokemons();
-
-                resolve(pokemons);
-            }
-        } catch (error) {
-            reject(new Error('Failed to get pokemons from local storage'));
-        }
-    });
-}
+};

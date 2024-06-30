@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 /**
  * Renders the header component.
@@ -7,16 +7,26 @@ import Image from "next/image";
  */
 const Header = () => {
     return (
-        <nav className="absolute container w-full h-[100px] flex items-center justify-between">
+        <nav className="container absolute flex h-[100px] w-full items-center justify-between">
             <div>
-                <Image priority={true} src={'/pokedex-logo.png'} alt="Pokedex Logo" width={100} height={100} />
+                <Image
+                    priority={true}
+                    src={'/pokedex-logo.png'}
+                    alt="Pokedex Logo"
+                    width={100}
+                    height={100}
+                />
             </div>
 
-            <div className="flex gap-x-7 items-center">
+            <div>
+                <small>&#47;&#42; Still under development &#42;&#47;</small>
+            </div>
+
+            <div className="flex items-center gap-x-7">
                 <small>Created by: Martin</small>
             </div>
         </nav>
     );
-}
+};
 
 export default Header;

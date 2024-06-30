@@ -3,27 +3,35 @@ import {
     NavigationMenu,
     NavigationMenuItem,
     NavigationMenuLink,
-    NavigationMenuList,
-} from "@/components/ui/navigation-menu"
-import { cn } from '@/lib/utils';
+    NavigationMenuList
+} from '@/components/ui/navigation-menu';
 import { ModeToggle } from './theme-toggler';
 import SortPokemonsButton from './sort-button';
 import LoadMorePokemonButton from './load-more-pokemon';
+import { cn } from '@/lib/utils';
 
 type BottomNavigationProps = {
     loadMorePokemons: () => void;
     sortPokemons: (method: string) => void;
-}
+    isLoading: boolean;
+};
 
-const BottomNavigation: React.FC<BottomNavigationProps> = ({ loadMorePokemons, sortPokemons }): JSX.Element => {
+const BottomNavigation: React.FC<BottomNavigationProps> = ({
+    loadMorePokemons,
+    sortPokemons,
+    isLoading
+}) => {
     return (
-        <div className='fixed bottom-5 px-3 sm:px-0 animate-fade w-full sm:w-[385px] bg-transparent shadow-2xl max-h-[65px] rounded-full h-fit'>
-            <div className='flex items-center gap-x-3 w-full'>
-                <LoadMorePokemonButton loadMorePokemons={loadMorePokemons} />
-                <NavigationMenu className="absolute right-4 sm:right-2 ">
-                    <NavigationMenuList className="bg-background rounded-full">
+        <div className="fixed bottom-5 left-0 right-0 mx-auto h-fit max-h-[65px] w-full animate-fade rounded-full bg-transparent px-3 shadow-2xl sm:w-[385px] sm:px-0">
+            <div className="flex w-full items-center gap-x-3">
+                <LoadMorePokemonButton
+                    loadMorePokemons={loadMorePokemons}
+                    isLoading={isLoading}
+                />
+                <NavigationMenu className="absolute right-4 sm:right-2">
+                    <NavigationMenuList className="rounded-full bg-background">
                         <NavigationMenuItem>
-                            <SortPokemonsButton sortPokemons={sortPokemons}  />
+                            <SortPokemonsButton sortPokemons={sortPokemons} />
                         </NavigationMenuItem>
                         <NavigationMenuItem>
                             <ModeToggle />
@@ -36,8 +44,8 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ loadMorePokemons, s
 };
 
 export const ListItem = React.forwardRef<
-    React.ElementRef<"a">,
-    React.ComponentPropsWithoutRef<"a">
+    React.ElementRef<'a'>,
+    React.ComponentPropsWithoutRef<'a'>
 >(({ className, title, children, ...props }, ref) => {
     return (
         <li>
@@ -45,20 +53,22 @@ export const ListItem = React.forwardRef<
                 <a
                     ref={ref}
                     className={cn(
-                        "block cursor-pointer select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+                        'block cursor-pointer select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
                         className
                     )}
                     {...props}
                 >
-                    <div className="text-sm font-medium leading-none">{title}</div>
+                    <div className="text-sm font-medium leading-none">
+                        {title}
+                    </div>
                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                         {children}
                     </p>
                 </a>
             </NavigationMenuLink>
         </li>
-    )
-})
-ListItem.displayName = "ListItem"
+    );
+});
+ListItem.displayName = 'ListItem';
 
 export default BottomNavigation;
