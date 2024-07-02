@@ -16,14 +16,14 @@ const Header = () => {
         <nav
             className={`${pathname === '/' ? 'h-[100px]' : 'h-[65px]'} absolute top-0 z-10 flex w-full border-b transition-all duration-500`}>
             <div
-                className={`${pathname === '/' ? '' : 'px-52'} container flex items-center justify-between transition-all duration-500`}>
+                className={`${pathname === '/' ? '' : 'md:px-52'} container flex items-center justify-between transition-all duration-500`}>
                 <div>
                     <Link href={'/'}>
                         <Image priority={true} src={'/pokedex-logo.png'} alt="Pokedex Logo" width={100} height={100} />
                     </Link>
                 </div>
 
-                <div>
+                <div className='md:block hidden'>
                     <small>&#47;&#42; Still under development &#42;&#47;</small>
                 </div>
 

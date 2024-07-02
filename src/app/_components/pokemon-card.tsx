@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import DisplayPokemonImage from '@/components/custom-components/pokemon-image';
 import { PokemonTypeBadge } from '@/components/custom-components/pokemon-type/type-badge';
 import Tilt from 'react-parallax-tilt';
-import { getPokemonColor } from '@/utils/constants';
-import { CapitalizeString } from '@/utils/utils';
+import { getPokemonColor } from '@/lib/constants';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Pokemon } from '@/types/pokemon';
+import { CapitalizeString } from '@/lib/utils';
 
 type PokemonCardProps = Pick<Pokemon, 'id' | 'name' | 'image' | 'types' | 'url'>;
 

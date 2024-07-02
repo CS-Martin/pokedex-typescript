@@ -4,6 +4,7 @@ import { Pokemon } from '@/types/pokemon';
 import React, { useState } from 'react';
 import { Inter } from 'next/font/google';
 import { PacmanLoader } from 'react-spinners';
+import PokemonTypes from './types';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,10 +16,10 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ pokemonColor, ...pokemo
     return (
         <div className="grid grid-cols-2 gap-3">
             <div className="flex items-center justify-between border-r py-3">
-                <h1 className={`text-3xl font-semibold`} style={{ color: pokemonColor }}>
+                <h1 className={`md:text-3xl font-semibold`} style={{ color: pokemonColor }}>
                     {pokemon?.name && pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
                 </h1>
-                <h1 className="me-3 text-xl">#{pokemon?.id?.toString()?.padStart(3, '0') ?? ''}</h1>
+                <h1 className="me-3 md:text-xl">#{pokemon?.id?.toString()?.padStart(3, '0') ?? ''}</h1>
             </div>
             <div className="flex items-center justify-evenly text-center">
                 <div className="text-center">
@@ -32,7 +33,11 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ pokemonColor, ...pokemo
             </div>
 
             <PokemonDescription description={pokemon?.description as string[]} pokemonColor={pokemonColor} />
-            <div>test</div>
+
+            <div className='col-span-2'>
+                <PokemonTypes types={pokemon?.types} />
+
+            </div>
         </div>
     );
 };

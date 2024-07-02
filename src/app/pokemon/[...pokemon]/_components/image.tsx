@@ -11,7 +11,7 @@ const PokemonImage: React.FC<PokemonImageProps> = ({ cardBackground, image, name
     return (
         <>
             <Tilt
-                className="relative flex h-[400px] w-[350px] items-center rounded-xl border"
+                className="relative flex w-auto h-auto md:h-[400px] md:w-[350px] items-center justify-center rounded-xl border"
                 glareEnable={true}
                 glareMaxOpacity={0.1}
                 glareColor="lightblue"

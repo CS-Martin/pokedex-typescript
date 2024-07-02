@@ -1,5 +1,5 @@
 import { Pokemon, PokemonPageProps } from '@/types/pokemon';
-import { POKEAPI_POKEMONS_DESCRIPTION_URL, POKEAPI_POKEMONS_IMAGE_URL, POKEAPI_POKEMONS_URL } from '@/utils/constants';
+import { POKEAPI_POKEMONS_DESCRIPTION_URL, POKEAPI_POKEMONS_IMAGE_URL, POKEAPI_POKEMONS_URL } from '@/lib/constants';
 
 export const fetchAllPokemons = async (): Promise<Pokemon[] | null> => {
     try {
