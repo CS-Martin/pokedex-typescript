@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Inter } from 'next/font/google';
 import { PacmanLoader } from 'react-spinners';
 import PokemonTypes from './types';
+import PokemonWeaknesses from './weaknesses';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -34,9 +35,11 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ pokemonColor, ...pokemo
 
             <PokemonDescription description={pokemon?.description as string[]} pokemonColor={pokemonColor} />
 
-            <div className='col-span-2'>
+            <div className=''>
                 <PokemonTypes types={pokemon?.types} />
-
+            </div>
+            <div>
+                <PokemonWeaknesses types={pokemon?.types} />
             </div>
         </div>
     );

@@ -19,7 +19,7 @@ export const POKEAPI_POKEMONS_DESCRIPTION_URL: string = `${POKEAPI_BASE_URL}/pok
 export const POKEAPI_POKEMONS_IMAGE_URL: string = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/';
 
 // // https://www.eurogamer.net/pokemon-go-type-chart-effectiveness-weaknesses
-export function getPokemonWeakness(pokemonType: string): string[] | undefined {
+export function getPokemonWeakness(pokemonType: string): string[] {
     const weakness: { [key: string]: string[] } = {
         normal: ['rock', 'ghost', 'steel'],
         fighting: ['flying', 'poison', 'psychic', 'bug', 'ghost', 'fairy'],
