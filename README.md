@@ -4,9 +4,15 @@
 
 Pokedexts is a simple pokemon catalogue web application buit with Nextjs and typescript.
 
+![Alt text](public/images/loader.gif)
+
 ## Home page
 
-![Alt text](public/images/catalogue.png)
+![Alt text](public/catalogue.png)
+
+## Home page
+
+![Alt text](public/images/bulbasaur-page.png)
 
 ## Specific recipe page
 
