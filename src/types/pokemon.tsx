@@ -7,7 +7,7 @@ export type Pokemon = {
     weight: number;
     url: string;
     image: string;
-    types: string[];
+    types: PokemonType[];
     stats: PokemonStats;
     abilities: string[];
 };
@@ -41,3 +41,5 @@ export type PokemonImage = Pick<Pokemon, 'image' | 'name'> & {
     size: number;
     className: string;
 };
+
+export type PokemonType = "ice" | "normal" | "water" | "bug" | "dark" | "dragon" | "electric" | "fire" | "fairy" | "fighting" | "flying" | "ghost" | "grass" | "ground" | "poison" | "psychic" | "rock" | "steel";

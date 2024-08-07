@@ -5,21 +5,13 @@ import Tilt from 'react-parallax-tilt';
 import { getPokemonColor } from '@/lib/constants';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Pokemon } from '@/types/pokemon';
+import { Pokemon, PokemonType } from '@/types/pokemon';
 import { CapitalizeString } from '@/lib/utils';
 
-type PokemonCardProps = Pick<Pokemon, 'id' | 'name' | 'image' | 'types' | 'url'>;
+type PokemonCardProps = Pick<Pokemon, 'id' | 'name' | 'image' | 'types' | 'url'> & {
+    types: PokemonType[];
+};
 
-/**
- * Renders a PokemonCard component with the given properties.
- *
- * @param {PokemonCardProps} props - The properties of the PokemonCard component.
- * @param {number} props.id - The ID of the Pokemon.
- * @param {string} props.name - The name of the Pokemon.
- * @param {string} props.url - The URL of the Pokemon's image.
- * @param {string[]} props.types - The types of the Pokemon.
- * @returns {JSX.Element} The rendered PokemonCard component.
- */
 const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, image, types }: PokemonCardProps): JSX.Element => {
     const cardBackground = types ? getPokemonColor(types[0].replace(/\s+/g, '').toLowerCase()) : '#000000';
 
@@ -38,7 +30,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, image, types }: Pok
             <div className="absolute flex flex-wrap gap-2">
                 {types?.map((type: string, index: number) => (
                     <Tilt key={index} scale={1.07}>
-                        <PokemonTypeBadge type={type} />
+                        <PokemonTypeBadge type={type as PokemonType} />
                     </Tilt>
                 ))}
             </div>

@@ -1,8 +1,10 @@
 import { PokemonTypeBadge } from "@/components/custom-components/pokemon-type/type-badge";
 import { getPokemonWeakness } from "@/lib/constants";
-import { Pokemon } from "@/types/pokemon";
+import { Pokemon, PokemonType } from "@/types/pokemon";
 
-type PokemonTypesProps = Partial<Pick<Pokemon, 'types'>>;
+type PokemonTypesProps = {
+    types: PokemonType[];
+};
 
 const PokemonWeaknesses: React.FC<PokemonTypesProps> = ({ types }): JSX.Element => {
     const weaknesses: string[] = types
@@ -14,7 +16,7 @@ const PokemonWeaknesses: React.FC<PokemonTypesProps> = ({ types }): JSX.Element 
             <p className="text-label mb-2">Weak against:</p>
             <div className='flex gap-2 flex-wrap'>
                 {weaknesses && weaknesses.map((weakness, index) =>
-                    <PokemonTypeBadge key={index} type={weakness} />
+                    <PokemonTypeBadge key={index} type={weakness as PokemonType} />
                 )}
             </div>
         </div>

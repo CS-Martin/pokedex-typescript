@@ -1,5 +1,5 @@
 import { fetchAllPokemons, fetchPokemonTypes } from '@/services/pokeapi';
-import { Pokemon } from '@/types/pokemon';
+import { Pokemon, PokemonType } from '@/types/pokemon';
 import { useEffect, useState } from 'react';
 
 interface useDisplayPokemonsProps {
@@ -36,7 +36,7 @@ export const useDisplayPokemons = (limit: number, searchParam: string, sortMetho
                 const pokemonWithTypes: Pokemon[] = await Promise.all(
                     filteredPokemons.map(async (pokemon: Pokemon) => ({
                         ...pokemon,
-                        types: await fetchPokemonTypesById(pokemon.id)
+                        types: await fetchPokemonTypesById(pokemon.id) as PokemonType[]
                     }))
                 );
 

@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { cleanDescription } from '@/lib/utils';
-import { Pokemon } from '@/types/pokemon';
+import { Pokemon, PokemonType } from '@/types/pokemon';
 import React, { useState } from 'react';
 import { Inter } from 'next/font/google';
 import { PacmanLoader } from 'react-spinners';
@@ -36,10 +36,10 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ pokemonColor, ...pokemo
             <PokemonDescription description={pokemon?.description as string[]} pokemonColor={pokemonColor} />
 
             <div className=''>
-                <PokemonTypes types={pokemon?.types} />
+                <PokemonTypes types={pokemon?.types as PokemonType[]} />
             </div>
             <div>
-                <PokemonWeaknesses types={pokemon?.types} />
+                <PokemonWeaknesses types={pokemon?.types as PokemonType[]} />
             </div>
         </div>
     );

@@ -2,13 +2,13 @@ import { fetchPokemonDetails } from '@/services/pokeapi';
 import { Pokemon, PokemonPageProps } from '@/types/pokemon';
 import { useEffect, useState } from 'react';
 
-export const useDisplayPokemonDetails = (pokemonName: string): PokemonPageProps | null => {
+export const useDisplayPokemonDetails = (pokemonId: number): PokemonPageProps | null => {
     const [pokemon, setPokemon] = useState<PokemonPageProps | null>(null);
 
     useEffect(() => {
         const fetchPokemon = async () => {
             try {
-                const fetch = await fetchPokemonDetails(pokemonName);
+                const fetch = await fetchPokemonDetails(pokemonId);
 
                 if (!fetch) {
                     throw new Error('test');
@@ -21,7 +21,7 @@ export const useDisplayPokemonDetails = (pokemonName: string): PokemonPageProps 
         };
 
         fetchPokemon();
-    }, [pokemonName]);
+    }, [pokemonId]);
 
     return pokemon;
 };

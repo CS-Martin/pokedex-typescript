@@ -13,7 +13,7 @@ import BottomNavigation from '@/components/custom-components/bottom-nav/bottom-n
 
 const PokemonDetailsPage = (): JSX.Element => {
     const params = useParams();
-    const pokemonId = params.pokemon[0];
+    const pokemonId: number = +params.pokemon[0];
 
     const pokemon: PokemonPageProps | null = useDisplayPokemonDetails(pokemonId);
     const pokemonColor = pokemon?.types
