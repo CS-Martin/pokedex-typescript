@@ -68,7 +68,7 @@ const PokemonDescription: React.FC<PokemonDetailsProps> = ({ description, pokemo
             <div className={`${showMore ? 'h-fit' : 'max-h-[350px]'} relative overflow-y-hidden`}>
                 <p className="mb-2 text-label">Description:</p>
                 {description?.map((desc, index) => (
-                    <div data-aos="fade-up" key={index} className="relative">
+                    <div data-aos="fade-up" key={index} className="relative hover:bg-gray-800 select-none">
                         <p className={`mt-3 w-[90%]`}>{cleanDescription(desc)}</p>
                         <small style={{ color: pokemonColor }} className="absolute right-0 top-0">
                             [{index + 1}]

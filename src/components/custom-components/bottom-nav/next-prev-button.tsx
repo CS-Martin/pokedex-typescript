@@ -30,7 +30,7 @@ const NextPrevButton = ({ isLoading }: NextPrevButtonProps) => {
     }
 
     return (
-        <div className="bg-primary w-full rounded-full px-6 py-2 flex items-center gap-x-3">
+        <div className="bg-primary w-full rounded-full px-6 py-2 flex items-center justify-between gap-x-3">
             <Button>
                 <Link href={`/pokemon/${getPrevPokemonId()}/details`} className="flex gap-2 items-center">
                     <ArrowLeft size={24} />
