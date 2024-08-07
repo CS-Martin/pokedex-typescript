@@ -9,12 +9,13 @@ import PokemonImage from './_components/image';
 import PokemonDetails from './_components/details';
 import { Separator } from '@/components/ui/separator';
 import PokemonStats from './_components/stats';
+import BottomNavigation from '@/components/custom-components/bottom-nav/bottom-nav';
 
 const PokemonDetailsPage = (): JSX.Element => {
     const params = useParams();
-    const pokemonName = params.pokemon[1];
+    const pokemonId = params.pokemon[0];
 
-    const pokemon: PokemonPageProps | null = useDisplayPokemonDetails(pokemonName);
+    const pokemon: PokemonPageProps | null = useDisplayPokemonDetails(pokemonId);
     const pokemonColor = pokemon?.types
         ? getPokemonColor(pokemon.types[0].replace(/\s+/g, '').toLowerCase())
         : '#000000';
@@ -49,6 +50,12 @@ const PokemonDetailsPage = (): JSX.Element => {
                     <PokemonStats stats={pokemon?.stats} progressBarColor={pokemonColor} />
                 </section>
             </div>
+
+            <BottomNavigation
+                loadMorePokemons={() => { }}
+                sortPokemons={() => { }}
+                isLoading={false}
+            />
         </main>
     );
 };

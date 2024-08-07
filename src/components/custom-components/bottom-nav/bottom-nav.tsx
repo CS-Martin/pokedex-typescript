@@ -9,6 +9,8 @@ import { ModeToggle } from './theme-toggler';
 import SortPokemonsButton from './sort-button';
 import LoadMorePokemonButton from './load-more-pokemon';
 import { cn } from '@/lib/utils';
+import { usePathname, useRouter } from 'next/navigation';
+import NextPrevButton from './next-prev-button';
 
 type BottomNavigationProps = {
     loadMorePokemons: () => void;
@@ -17,21 +19,30 @@ type BottomNavigationProps = {
 };
 
 const BottomNavigation: React.FC<BottomNavigationProps> = ({ loadMorePokemons, sortPokemons, isLoading }) => {
+    // If url is not /, then don't show the bottom navigation
+    const pathname = usePathname();
+
     return (
         <div className="fixed bottom-5 left-0 right-0 mx-auto h-fit max-h-[65px] w-full animate-fade rounded-full bg-transparent px-3 shadow-2xl sm:w-[385px] sm:px-0">
-            <div className="flex w-full items-center gap-x-3">
-                <LoadMorePokemonButton loadMorePokemons={loadMorePokemons} isLoading={isLoading} />
-                <NavigationMenu className="absolute right-4 sm:right-2">
-                    <NavigationMenuList className="rounded-full bg-background">
-                        <NavigationMenuItem>
-                            <SortPokemonsButton sortPokemons={sortPokemons} />
-                        </NavigationMenuItem>
-                        <NavigationMenuItem>
-                            <ModeToggle />
-                        </NavigationMenuItem>
-                    </NavigationMenuList>
-                </NavigationMenu>
-            </div>
+            {pathname === '/' ? (
+                <div className="flex w-full items-center gap-x-3">
+                    <LoadMorePokemonButton loadMorePokemons={loadMorePokemons} isLoading={isLoading} />
+                    <NavigationMenu className="absolute right-4 sm:right-2">
+                        <NavigationMenuList className="rounded-full bg-background">
+                            <NavigationMenuItem>
+                                <SortPokemonsButton sortPokemons={sortPokemons} />
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <ModeToggle />
+                            </NavigationMenuItem>
+                        </NavigationMenuList>
+                    </NavigationMenu>
+                </div>
+            ) : (
+                <div className="flex w-full items-center">
+                    <NextPrevButton isLoading={isLoading} />
+                </div>
+            )}
         </div>
     );
 };

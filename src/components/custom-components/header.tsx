@@ -11,7 +11,7 @@ import { usePathname } from 'next/navigation';
  */
 const Header = () => {
     const pathname = usePathname();
-    console.log(pathname);
+
     return (
         <nav
             className={`${pathname === '/' ? 'h-[100px]' : 'h-[65px]'} absolute top-0 z-10 flex w-full border-b transition-all duration-500`}>

@@ -14,7 +14,6 @@ export const useDisplayPokemonDetails = (pokemonName: string): PokemonPageProps 
                     throw new Error('test');
                 }
 
-                console.log(fetch);
                 setPokemon(fetch);
             } catch (error) {
                 throw new Error('May mali');

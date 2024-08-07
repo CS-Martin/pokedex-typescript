@@ -55,9 +55,11 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ id, name, image, types }: Pok
                 <p className="sm:text-[18px]">{CapitalizeString(name)}</p>
             </div>
             <div className="absolute left-0 right-0 top-[100%] mx-3 duration-500 ease-in-out group-hover:-translate-y-[50px]">
-                <Link href={`/pokemon/${id}/${name}/details`}>
+                <Link href={`/pokemon/${id}/details`}>
                     <Button className="w-full px-4 py-2 transition-colors">
-                        <span>View {CapitalizeString(name)} Details</span>
+                        <span>
+                            View <span className="hidden xl:inline-block">{CapitalizeString(name)}</span> Details
+                        </span>
                     </Button>
                 </Link>
             </div>

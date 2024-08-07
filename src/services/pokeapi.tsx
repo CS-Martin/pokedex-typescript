@@ -57,9 +57,9 @@ export const fetchPokemonTypes = async (id: number): Promise<string[]> => {
     }
 };
 
-export const fetchPokemonDetails = async (pokemonName: string): Promise<PokemonPageProps> => {
+export const fetchPokemonDetails = async (pokemonId: number): Promise<PokemonPageProps> => {
     try {
-        const response: Response = await fetch(`${POKEAPI_POKEMONS_URL}${pokemonName}`);
+        const response: Response = await fetch(`${POKEAPI_POKEMONS_URL}${pokemonId}`);
 
         if (!response.ok) {
             throw new Error('Failed to fetch pokemon details');
